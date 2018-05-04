@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Sandart
+
+  Created by Joshua on 2018. 4. 6..
+  Copyright © 2018년 Joshua. All rights reserved.
+*/
+"Confirm" = "Confirm";
+"Remove_All_Files" = "Are you sure to remove all downloaded files?";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Download_Error" = "Download error";
+"Download_Cancelled" = "Download Cancelled";
+"Try_again" = "Try again";

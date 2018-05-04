@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Sandart
+
+  Created by Joshua on 2018. 4. 6..
+  Copyright © 2018년 Joshua. All rights reserved.
+*/
+"Confirm" = "주의";
+"Remove_All_Files" = "이 작업은 내려받은 모든 동영상 파일을 삭제합니다. 실행 할까요?";
+"Cancel" = "취소";
+"OK" = "확인";
+"Download_Error" = "다운로드 에러";
+"Download_Cancelled" = "다운로드가 취소되었습니다.";
+"Try_again" = "다시 시도해주세요";

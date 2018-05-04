@@ -1,0 +1,33 @@
+
+/* Class = "UINavigationItem"; title = "Setting"; ObjectID = "5U3-c1-5H2"; */
+"5U3-c1-5H2.title" = "설정";
+
+/* Class = "UILabel"; text = "© CCC Korea 2018"; ObjectID = "97P-cM-Tea"; */
+"97P-cM-Tea.text" = "© CCC Korea 2018";
+
+/* Class = "UILabel"; text = "Credit"; ObjectID = "BRt-kD-Z43"; */
+"BRt-kD-Z43.text" = "만든이";
+
+/* Class = "UILabel"; text = "Restore Purchases"; ObjectID = "CoN-db-HDH"; */
+"CoN-db-HDH.text" = "이전 구매 불러오기";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "F96-0H-UpY"; */
+"F96-0H-UpY.title" = "설정";
+
+/* Class = "UITableViewSection"; headerTitle = "Links"; ObjectID = "Jrr-2R-eET"; */
+"Jrr-2R-eET.headerTitle" = "Links";
+
+/* Class = "UITabBarItem"; title = "SandArt"; ObjectID = "Xv6-1o-UUr"; */
+"Xv6-1o-UUr.title" = "샌드아트";
+
+/* Class = "UILabel"; text = "EveryKoreanStudent.com"; ObjectID = "hmm-aH-mvs"; */
+"hmm-aH-mvs.text" = "EveryKoreanStudent.com";
+
+/* Class = "UILabel"; text = "SandArtP4U.com"; ObjectID = "jQl-wc-2K6"; */
+"jQl-wc-2K6.text" = "SandArtP4U.com";
+
+/* Class = "UIButton"; normalTitle = "$0.99"; ObjectID = "qlS-YK-AJh"; */
+"qlS-YK-AJh.normalTitle" = "$0.99";
+
+/* Class = "UILabel"; text = "Remove All Files"; ObjectID = "tdR-Nc-2W4"; */
+"tdR-Nc-2W4.text" = "모든 동영상 파일 삭제";
