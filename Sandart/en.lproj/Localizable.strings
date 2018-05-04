@@ -12,3 +12,4 @@
 "Download_Error" = "Download error";
 "Download_Cancelled" = "Download Cancelled";
 "Try_again" = "Try again";
+"Max_DownloadError" = "You can download 3 movies at the same time";

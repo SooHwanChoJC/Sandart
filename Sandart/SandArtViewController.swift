@@ -12,6 +12,7 @@ import Alamofire
 import AVFoundation
 import AVKit
 
+let Max_Concurrent_Download = 3
 
 class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,SKPaymentTransactionObserver,SKProductsRequestDelegate {
     
@@ -22,8 +23,9 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     var requestDic:Dictionary<String,Alamofire.Request> = Dictionary<String,Alamofire.Request>()
     var downloadProgress:Dictionary<String,Float> = Dictionary<String,Float>()
     var downloadingPath = Array<IndexPath>()
+    var timerSet = false
     let SandArtLanguages = ["Korean","English","Chinese","ChineseTraditional","Japanese", "Russian", "French", "Spanish", "Hindi","Mongolia", "Polish", "Turkish", "Nepali", "Indonesia","Thai", "Cambodian", "Filipino"]
-    let manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "org.kccc.P4U1.background"))
+    let manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "org.kccc.P4U.background"))
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,6 +96,15 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func downloadWithLangKey(langkey:String){
         let entry = table!.entryWithLangKey(langkey)
         let indexPath = IndexPath.init(row: (table?.indexForLangKey(langkey))!, section: 1)
+        if self.requestDic.count >= Max_Concurrent_Download{
+            let title = "Download_Error"
+            let message = "Max_DownloadError"
+            let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
+            let cancel = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .cancel, handler: nil)
+            av.addAction(cancel)
+            self.present(av, animated: true, completion: nil)
+            return
+        }
         if entry?.Status == MovieStatus.NotDownloaded{
             let targetPath = (Bundle.main.object(forInfoDictionaryKey: "Download Paths") as! NSDictionary).object(forKey: langkey) as! String
             let url = URL.init(string: targetPath)//download url
@@ -139,12 +150,16 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
                     }
                     self.requestDic.removeValue(forKey: langkey)
                     self.downloadingPath.remove(at: self.downloadingPath.index(of: indexPath)!)
+              
             }
             requestDic[langkey] = request
+            if(!self.timerSet){
             Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updatePeriodically(timer:)), userInfo: nil, repeats: true)
+                self.timerSet = true
+            }
             request.resume()
         }
-    }
+}
     
     func addSkipBackupAttributeToItemAtURL(URL:URL){
         
@@ -476,6 +491,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     @objc func updatePeriodically(timer:Timer){
         if self.downloadingPath.count == 0{
             timer.invalidate()
+            self.timerSet = false
             return
         }
         else{
