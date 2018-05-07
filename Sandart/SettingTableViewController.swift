@@ -2,7 +2,7 @@
 //  SettingTableViewController.swift
 //  Sandart
 //
-//  Created by Joshua on 2018. 4. 6..
+//  Created by Soohwan.Cho on 2018. 4. 6..
 //  Copyright © 2018년 Joshua. All rights reserved.
 //
 
