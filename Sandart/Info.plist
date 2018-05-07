@@ -22,6 +22,10 @@
 	<string>1</string>
 	<key>Download Paths</key>
 	<dict>
+		<key>Arabic</key>
+		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Arabic.mp4</string>
+		<key>Vietnamese</key>
+		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4</string>
 		<key>Cambodian</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Cambodian.mp4</string>
 		<key>Chinese</key>
