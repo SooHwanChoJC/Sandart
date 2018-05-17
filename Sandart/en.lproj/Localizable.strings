@@ -13,3 +13,5 @@
 "Download_Cancelled" = "Download Cancelled";
 "Try_again" = "Try again";
 "Max_DownloadError" = "You can download 3 movies at the same time";
+"FirstConn"= "Internet Connection is required at First Launch";
+"CheckInternet" = "Please, Check the Internet Connection";

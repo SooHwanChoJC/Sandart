@@ -77,6 +77,15 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     //MARK: - event handlers
     
     @IBAction func purchase(_ sender: Any) {
+        if !isConnected(){
+            let title = "Download_Error"
+            let message = "CheckInternet"
+            let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
+            let cancel = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .cancel, handler: nil)
+            av.addAction(cancel)
+            self.present(av, animated: true, completion: nil)
+            return
+        }
         let priceButton = sender as! UIButton
         let button = priceButton.superview?.viewWithTag(2) as! UIButton
         let langKey = button.title(for: UIControlState.application)!.trimmingCharacters(in: CharacterSet.init(charactersIn: " "))
@@ -94,6 +103,15 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func downloadWithLangKey(langkey:String){
+        if !isConnected(){
+            let title = "Download_Error"
+            let message = "CheckInternet"
+            let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
+            let cancel = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .cancel, handler: nil)
+            av.addAction(cancel)
+            self.present(av, animated: true, completion: nil)
+            return
+        }
         let entry = table!.entryWithLangKey(langkey)
         let indexPath = IndexPath.init(row: (table?.indexForLangKey(langkey))!, section: 1)
         if self.requestDic.count >= Max_Concurrent_Download{
@@ -385,7 +403,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func validateProductIdentifiers(productIdentifiers:Array<String>)
     {
-        
         SKPaymentQueue.default().add(self)
         let productRequest = SKProductsRequest.init(productIdentifiers:Set<String>(productIdentifiers))
         
@@ -497,5 +514,9 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         else{
             self.tableView.reloadRows(at: self.downloadingPath, with: .none)
         }
+    }
+    func isConnected()->Bool{
+        let reachabilityManager = Alamofire.NetworkReachabilityManager()!
+        return reachabilityManager.isReachable
     }
 }
