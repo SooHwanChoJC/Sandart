@@ -13,3 +13,5 @@
 "Download_Cancelled" = "다운로드가 취소되었습니다.";
 "Try_again" = "다시 시도해주세요";
 "Max_DownloadError" = "동시에 3개까지만 다운로드 받을 수 있습니다.";
+"FirstConn" = "첫 앱실행시 반드시 인터넷 연결이 필요합니다.";
+"CheckInternet" = "인터넷 연결을 확인해주세요.";
