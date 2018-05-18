@@ -12,7 +12,7 @@ import Alamofire
 import AVFoundation
 import AVKit
 
-let Max_Concurrent_Download = 3
+let MaxConcurrentDownload = 3
 
 class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,SKPaymentTransactionObserver,SKProductsRequestDelegate {
     
@@ -39,13 +39,16 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         if(table == nil)
         {
             table = SandartEntryTable(With: SandArtLanguages)
-            self.validateProductIdentifiers(productIdentifiers: SandArtLanguages)
+           //self.initIfAvailable()
         }
         for identifier in SandArtLanguages{
             downloadProgress[identifier] = 0.0
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.initIfAvailable()
+    }
     func getScreenFrameForCurrentOrientation() -> CGRect{
         return self.getScreenFrameForOrientation(orientation: UIApplication.shared.statusBarOrientation)
     }
@@ -77,7 +80,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     //MARK: - event handlers
     
     @IBAction func purchase(_ sender: Any) {
-        if !isConnected(){
+        if !isConnectedInternet(){
             let title = "Download_Error"
             let message = "CheckInternet"
             let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
@@ -103,7 +106,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func downloadWithLangKey(langkey:String){
-        if !isConnected(){
+        if !isConnectedInternet(){
             let title = "Download_Error"
             let message = "CheckInternet"
             let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
@@ -114,7 +117,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }
         let entry = table!.entryWithLangKey(langkey)
         let indexPath = IndexPath.init(row: (table?.indexForLangKey(langkey))!, section: 1)
-        if self.requestDic.count >= Max_Concurrent_Download{
+        if self.requestDic.count >= MaxConcurrentDownload{
             let title = "Download_Error"
             let message = "Max_DownloadError"
             let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
@@ -504,6 +507,41 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let payment = SKMutablePayment.init(product: p!)
         SKPaymentQueue.default().add(payment)
     }
+    func initIfAvailable(){
+         var isLaunchedSuccesfullyBefore = UserDefaults.standard.object(forKey: "AlreadyLaunchedSuccessfullyBefore") as? Bool
+        if(isLaunchedSuccesfullyBefore == nil){
+            UserDefaults.standard.set(false, forKey: "AlreadyLaunchedSuccessfullyBefore")
+            isLaunchedSuccesfullyBefore = false
+        }
+        
+        if(!(isLaunchedSuccesfullyBefore!)){
+            let title = "FirstLaunchError"
+            let message = "CheckInternet"
+            let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
+            let retry = UIAlertAction(title: NSLocalizedString("Retry", comment: "Retry"), style: .default){
+                (action: UIAlertAction) in
+                if(self.isConnectedInternet()){
+                    self.validateProductIdentifiers(productIdentifiers: self.SandArtLanguages)
+                    UserDefaults.standard.set(true, forKey: "AlreadyLaunchedSuccessfullyBefore")
+                }
+                else{
+                    self.initIfAvailable()
+                }
+            }
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"),style: .cancel){
+                (action: UIAlertAction) in
+                exit(0)
+            }
+            
+            av.addAction(retry)
+            av.addAction(cancel)
+            
+            self.present(av, animated: true, completion: nil)
+        }
+        else{
+           self.validateProductIdentifiers(productIdentifiers: self.SandArtLanguages)
+        }
+    }
     //MARK: - Update UI
     @objc func updatePeriodically(timer:Timer){
         if self.downloadingPath.count == 0{
@@ -515,7 +553,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             self.tableView.reloadRows(at: self.downloadingPath, with: .none)
         }
     }
-    func isConnected()->Bool{
+    func isConnectedInternet()->Bool{
         let reachabilityManager = Alamofire.NetworkReachabilityManager()!
         return reachabilityManager.isReachable
     }
