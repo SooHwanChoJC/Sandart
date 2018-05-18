@@ -15,3 +15,5 @@
 "Max_DownloadError" = "You can download 3 movies at the same time";
 "FirstConn"= "Internet Connection is required at First Launch";
 "CheckInternet" = "Please, Check the Internet Connection";
+"FirstLaunchError" = "This App Needs Internet Connection at first Launch";
+"Retry" = "Retry";
