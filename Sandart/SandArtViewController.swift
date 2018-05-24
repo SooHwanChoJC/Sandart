@@ -515,6 +515,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }
         
         if(!(isLaunchedSuccesfullyBefore!)){
+            if !self.isConnectedInternet(){
             let title = "FirstLaunchError"
             let message = "CheckInternet"
             let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
@@ -537,6 +538,11 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             av.addAction(cancel)
             
             self.present(av, animated: true, completion: nil)
+            }
+            else{
+                self.validateProductIdentifiers(productIdentifiers: self.SandArtLanguages)
+                UserDefaults.standard.set(true, forKey: "AlreadyLaunchedSuccessfullyBefore")
+            }
         }
         else{
            self.validateProductIdentifiers(productIdentifiers: self.SandArtLanguages)
