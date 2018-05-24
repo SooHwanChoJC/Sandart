@@ -20,7 +20,7 @@ class SandartEntry:NSObject,NSCoding{
     var LangKey:String = ""
     var Title:String = ""
     var Price:String = ""
-    var Status:MovieStatus = MovieStatus.NotPurchased
+    var Status:MovieStatus = MovieStatus.NotDownloaded
 
     var _progress:Float = 0.0
     var progress:Float{
@@ -33,7 +33,7 @@ class SandartEntry:NSObject,NSCoding{
     }
     override init(){
         LangKey = "Not Found"
-        Status = MovieStatus.NotPurchased
+        Status = MovieStatus.NotDownloaded
     }
     
     init(WithLangKey key:String)
