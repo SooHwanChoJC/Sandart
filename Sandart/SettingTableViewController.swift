@@ -36,13 +36,13 @@ class SettingTableViewController: UITableViewController,SKPaymentTransactionObse
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4;
+        return 3;
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         var n:Int=0
-        if(section == 2){
+        if(section == 1){
             n = 2
         }
         else{
@@ -56,21 +56,13 @@ class SettingTableViewController: UITableViewController,SKPaymentTransactionObse
         case 0:
             switch(indexPath.row){
             case 0:
-                //restore purchases
-                self.restoreCompletedTransactions()
-            default:
-                break
-            }
-        case 1:
-            switch(indexPath.row){
-            case 0:
                 showAllRemoveConfirmAlertView(Withtitle: NSLocalizedString("Confirm", comment: "Confirm"), WithMessage: NSLocalizedString("Remove_All_Files", comment: "Are you Sure?"))
                 self.tableView.deselectRow(at: indexPath, animated: true)
                 break;
             default:
                 break;
             }
-        case 2:
+        case 1:
             switch(indexPath.row){
             case 0:
                 UIApplication.shared.open(URL(string: "http://everykoreanstudent.com")!, options: [:], completionHandler: nil)
@@ -83,7 +75,7 @@ class SettingTableViewController: UITableViewController,SKPaymentTransactionObse
             default:
                 break;
             }
-        case 3:
+        case 2:
              tableView.deselectRow(at: indexPath, animated: true)
         default:
             break;
