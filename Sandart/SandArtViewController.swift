@@ -14,17 +14,16 @@ import AVKit
 
 let MaxConcurrentDownload = 3
 
-class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,SKPaymentTransactionObserver,SKProductsRequestDelegate {
+class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
     var table:SandartEntryTable?
-    var products:Array<SKProduct?>?
     var playerView:AVPlayerViewController?
     var requestDic:Dictionary<String,Alamofire.Request> = Dictionary<String,Alamofire.Request>()
     var downloadProgress:Dictionary<String,Float> = Dictionary<String,Float>()
     var downloadingPath = Array<IndexPath>()
     var timerSet = false
-    let SandArtLanguages = ["Korean","English","Chinese","ChineseTraditional","Japanese", "Russian", "French", "Spanish", "Hindi","Mongolia", "Polish", "Turkish", "Nepali", "Indonesia","Thai", "Cambodian", "Filipino"]
+    let SandArtLanguages = ["Korean" ,"English","Chinese","Chinese Traditional","Japanese", "Russian", "French", "Spanish", "Hindi","Mongolia", "Polish", "Turkish", "Nepali", "Indonesia","Thai", "Cambodian", "Filipino","Vietnamese","Arabic","Lao"]
     let manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "org.kccc.P4U.background"))
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +38,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         if(table == nil)
         {
             table = SandartEntryTable(With: SandArtLanguages)
-           //self.initIfAvailable()
         }
         for identifier in SandArtLanguages{
             downloadProgress[identifier] = 0.0
@@ -47,7 +45,8 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.initIfAvailable()
+        //self.initIfAvailable()
+        self.displayUI()
     }
     func getScreenFrameForCurrentOrientation() -> CGRect{
         return self.getScreenFrameForOrientation(orientation: UIApplication.shared.statusBarOrientation)
@@ -78,25 +77,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     //MARK: - event handlers
-    
-    @IBAction func purchase(_ sender: Any) {
-        if !isConnectedInternet(){
-            let title = "Download_Error"
-            let message = "CheckInternet"
-            let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
-            let cancel = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .cancel, handler: nil)
-            av.addAction(cancel)
-            self.present(av, animated: true, completion: nil)
-            return
-        }
-        let priceButton = sender as! UIButton
-        let button = priceButton.superview?.viewWithTag(2) as! UIButton
-        let langKey = button.title(for: UIControlState.application)!.trimmingCharacters(in: CharacterSet.init(charactersIn: " "))
-        priceButton.isHidden = true
-        
-        let product = self.productForKey(langKey: langKey)
-        self.paymentRequest(product: product)
-    }
     
     @objc @IBAction func download(_ sender: Any) {
         let button = sender as! UIButton
@@ -257,21 +237,12 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func updateButton(cell:UITableViewCell,withStatus status:MovieStatus,indexPath:IndexPath){
         let cell = cell as! LanguageTableViewCell
         let button = cell.viewWithTag(2) as! UIButton
-        let langKey = button.title(for: UIControlState.application)
-        let entry = table?.entryWithLangKey(langKey!)
         let progressBar = cell.viewWithTag(3) as! UIProgressView
         let priceButton = cell.viewWithTag(4) as! UIButton
         button.isHidden = false
         progressBar.isHidden = true
         priceButton.isHidden = true
         switch(status){
-        case MovieStatus.NotPurchased:
-            priceButton.isHidden = false
-            button.isHidden = true
-            priceButton.titleLabel!.text = entry!.Price
-            priceButton.setTitle(entry!.Price,for:UIControlState.normal)
-            priceButton.setTitle(entry!.Price,for:UIControlState.selected)
-            priceButton.addTarget(self, action:#selector(SandArtViewController.purchase(_:)), for: UIControlEvents.touchUpInside)
         case MovieStatus.NotDownloaded:
             button.setImage(UIImage(named: "Download.png"), for: UIControlState.normal)
             button.imageView!.contentMode = UIViewContentMode.scaleAspectFill
@@ -403,99 +374,14 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
 
     
 //MARK: - In-App Purchase Handlers
-    
-    func validateProductIdentifiers(productIdentifiers:Array<String>)
-    {
-        SKPaymentQueue.default().add(self)
-        let productRequest = SKProductsRequest.init(productIdentifiers:Set<String>(productIdentifiers))
+    func displayUI(){
         
-        productRequest.delegate = self
-        productRequest.start()
-    }
-    
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        self.products = response.products
-        self.tableView.reloadData()
-    
-        for identifier in response.invalidProductIdentifiers{
-            NSLog("Invalid:%@",identifier)
-        }
-        self.displayStoreUI()
-    }
-    
-    func productForKey(langKey:String)->SKProduct?{
-       
-        for p in self.products!
-        {
-            if(p!.productIdentifier == langKey)
-            {
-            return p
-            }
-        }
-        return nil
-    }
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for trans in transactions
-        {
-            if(trans.transactionState != SKPaymentTransactionState.purchasing)
-            {
-                let langKey = trans.payment.productIdentifier
-                let indexPath = IndexPath.init(row: (table?.indexForLangKey(langKey))!, section: 1)
-                self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
-            }
-            switch(trans.transactionState)
-            {
-            case SKPaymentTransactionState.purchased:
-                completeTransaction(transaction: trans)
-            case SKPaymentTransactionState.failed:
-                failedTransaction(transaction: trans)
-            case SKPaymentTransactionState.restored:
-                break//skip
-            default:
-                break
-            }
-        }
-    }
-    func completeTransaction(transaction:SKPaymentTransaction)
-    {
-        let langKey = transaction.payment.productIdentifier
-        let indexPath = IndexPath.init(row: (table?.indexForLangKey(langKey))!, section: 1)
-        self.update(indexPath: indexPath, withStatus: MovieStatus.NotDownloaded)
-        
-        SKPaymentQueue.default().finishTransaction(transaction)
-    }
-    
-    func failedTransaction(transaction:SKPaymentTransaction)
-    {
-        if (transaction.error! as! SKError).code == SKError.paymentCancelled{
-            let av = UIAlertController.init(title: "Purchase Unsuccessful", message: "Your Purchase failed. Please try again", preferredStyle:.alert)
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
-        
-            av.addAction(cancel)
-            self.present(av, animated: true, completion: nil)
-        }
-        SKPaymentQueue.default().finishTransaction(transaction)
-        
-    }
-    func displayStoreUI(){
-        
-        for product in self.products!{
-            let langKey = product!.productIdentifier
+        for langKey in self.SandArtLanguages{
             let entry = table!.entryWithLangKey(langKey)
-            entry!.Title = product!.localizedTitle
-            entry!.Price = self.formattedPrice(product: product!)
+            entry!.Title = NSLocalizedString(langKey, comment: langKey)
             entry!.persistForKey(langKey)
         }
         self.tableView.reloadData()
-    }
-    
-    func formattedPrice(product:SKProduct)->String{
-        let formatter = NumberFormatter.init()
-        formatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
-        formatter.numberStyle = NumberFormatter.Style.currency
-        formatter.locale = product.priceLocale
-        let formattedPrice = formatter.string(from: product.price)
-        return formattedPrice!
     }
     
     func paymentRequest(product p:SKProduct?)
@@ -522,7 +408,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             let retry = UIAlertAction(title: NSLocalizedString("Retry", comment: "Retry"), style: .default){
                 (action: UIAlertAction) in
                 if(self.isConnectedInternet()){
-                    self.validateProductIdentifiers(productIdentifiers: self.SandArtLanguages)
+                    self.displayUI()
                     UserDefaults.standard.set(true, forKey: "AlreadyLaunchedSuccessfullyBefore")
                 }
                 else{
@@ -540,12 +426,12 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             self.present(av, animated: true, completion: nil)
             }
             else{
-                self.validateProductIdentifiers(productIdentifiers: self.SandArtLanguages)
+                self.displayUI()
                 UserDefaults.standard.set(true, forKey: "AlreadyLaunchedSuccessfullyBefore")
             }
         }
         else{
-           self.validateProductIdentifiers(productIdentifiers: self.SandArtLanguages)
+           self.displayUI()
         }
     }
     //MARK: - Update UI

@@ -24,13 +24,11 @@
 	<dict>
 		<key>Arabic</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Arabic.mp4</string>
-		<key>Vietnamese</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4</string>
 		<key>Cambodian</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Cambodian.mp4</string>
 		<key>Chinese</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese.mp4</string>
-		<key>ChineseTraditional</key>
+		<key>Chinese Traditional</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4</string>
 		<key>English</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_English.mp4</string>
@@ -46,6 +44,8 @@
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Japanese.mp4</string>
 		<key>Korean</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Korean.mp4</string>
+		<key>Lao</key>
+		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Laos.mp4</string>
 		<key>Mongolia</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Mongolia.mp4</string>
 		<key>Nepali</key>
@@ -60,6 +60,8 @@
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Thai.mp4</string>
 		<key>Turkish</key>
 		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Turkish.mp4</string>
+		<key>Vietnamese</key>
+		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4</string>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
