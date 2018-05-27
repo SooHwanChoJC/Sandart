@@ -10,10 +10,10 @@ import UIKit
 
 class LanguageTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var LanguageLabel: UILabel!
-    @IBOutlet weak var DownloadButton: UIButton!
-    @IBOutlet weak var PurchaseButton: UIButton!
-    @IBOutlet weak var Progress: UIProgressView!
+    @IBOutlet var LanguageLabel: UILabel!
+    @IBOutlet var DownloadButton: UIButton!
+    @IBOutlet var PurchaseButton: UIButton!
+    @IBOutlet var Progress: UIProgressView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
         
