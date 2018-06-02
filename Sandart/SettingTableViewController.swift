@@ -12,25 +12,6 @@ import os
 
 class SettingTableViewController: UITableViewController{
     @IBOutlet var settingTable: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        /*
-        let creditTag = cell?.viewWithTag(333) as! UILabel
-        creditTag.frame = CGRect.init(x: cell!.frame.size.width-196, y: 12, width: 180, height: 20)
- */
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,7 +102,6 @@ class SettingTableViewController: UITableViewController{
     //MARK: - Alert View
     func showAllRemoveConfirmAlertView(Withtitle title:String,WithMessage message:String)
     {
-        //let uikitBundle = Bundle.init(for: type(of: UIButton.init()))
         let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
         let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
         let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"),style: .destructive){

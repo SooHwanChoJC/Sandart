@@ -16,7 +16,6 @@ class LanguageTableViewCell: UITableViewCell {
     @IBOutlet var Progress: UIProgressView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +30,6 @@ class LanguageTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
