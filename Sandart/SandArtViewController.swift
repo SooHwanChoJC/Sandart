@@ -45,7 +45,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //self.initIfAvailable()
         self.displayUI()
     }
     func getScreenFrameForCurrentOrientation() -> CGRect{
@@ -71,11 +70,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         return fullScreenRect
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //MARK: - event handlers
     
     @objc @IBAction func download(_ sender: Any) {
@@ -128,12 +122,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
                     response in
                     
                     if response.result.isFailure{
-                        if response.error!.localizedDescription == "cancelled"{ // user canceled, ignore
-                            /*let title = "Download_Cancelled"
-                            let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString("", comment: ""), preferredStyle:.alert)
-                            let cancel = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .cancel, handler: nil)
-                            av.addAction(cancel)
-                            self.present(av, animated: true, completion: nil)*/
+                        if response.error!.localizedDescription == "cancelled"{
                         }
                         else{
                             let title = "Download_Error"
@@ -280,13 +269,10 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let Identifier = (indexPath.section == 0) ? "ImageCell" : "languageCell"
+        let Identifier = (indexPath.section == 0) ? "ImageCell" : "LanguageCell"
         let Rawcell = tableView.dequeueReusableCell(withIdentifier: Identifier)
          if(indexPath.section == 0)
          {
-            /*let imageView = Rawcell!.viewWithTag(99) as! UIImageView
-            imageView.frame = CGRect.init(x: -8, y: 0, width:self.getScreenFrameForCurrentOrientation().size.width , height: 150)
-            imageView.contentMode = UIViewContentMode.scaleAspectFill*/
             Rawcell?.selectionStyle = UITableViewCellSelectionStyle.none
 
             return Rawcell!
@@ -294,7 +280,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         else
         {
             let cell = Rawcell as! LanguageTableViewCell
-            //let frame = cell.frame
             let languageLabel = cell.viewWithTag(1) as! UILabel
             let entry = table!.entryAtIndex(index: indexPath.row)
             
@@ -304,12 +289,8 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             }
             let actionButton = cell.contentView.viewWithTag(2) as! UIButton
             let progressBar = cell.viewWithTag(3) as! UIProgressView
-            //let priceButton = cell.contentView.viewWithTag(4) as! UIButton
-            
-            //actionButton.frame = CGRect(x:frame.size.width-40,y:7,width:32,height:32)
+
             actionButton.setTitle(entry!.LangKey, for: UIControlState.application)//set product identifier for purchase
-            //priceButton.frame = CGRect.init(x: frame.size.width-116, y: 7, width: 100 , height: 32)
-            //progressBar.frame = CGRect(x: frame.size.width-100, y: frame.size.height/2, width: 60, height:1)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             progressBar.setProgress(downloadProgress[entry!.LangKey]!, animated: false)
             self.updateButton(cell:cell, withStatus: entry!.Status,indexPath: indexPath)
@@ -317,18 +298,14 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
          
         }
     }
-    
-    func tableView(_ tableView: UITableView,
+   func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if(indexPath.section == 0)
-        {
-            return 150.0
-        }
-        else
-        {
-            return 48
-        }
+        //Because of Xcode bug, must implement this method to set dynamic cell's individual height
+        let Identifier = (indexPath.section == 0) ? "ImageCell" : "LanguageCell"
+        let Rawcell = tableView.dequeueReusableCell(withIdentifier: Identifier)
+        
+        return Rawcell!.bounds.size.height
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -373,7 +350,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
 
     
-//MARK: - In-App Purchase Handlers
+    //MARK: - Update UI
     func displayUI(){
         
         for langKey in self.SandArtLanguages{
@@ -384,15 +361,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         self.tableView.reloadData()
     }
     
-    func paymentRequest(product p:SKProduct?)
-    {
-        if(p == nil)
-        {
-            return;
-        }
-        let payment = SKMutablePayment.init(product: p!)
-        SKPaymentQueue.default().add(payment)
-    }
     func initIfAvailable(){
          var isLaunchedSuccesfullyBefore = UserDefaults.standard.object(forKey: "AlreadyLaunchedSuccessfullyBefore") as? Bool
         if(isLaunchedSuccesfullyBefore == nil){
@@ -434,7 +402,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
            self.displayUI()
         }
     }
-    //MARK: - Update UI
+
     @objc func updatePeriodically(timer:Timer){
         if self.downloadingPath.count == 0{
             timer.invalidate()
@@ -445,6 +413,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             self.tableView.reloadRows(at: self.downloadingPath, with: .none)
         }
     }
+    //MARK:- Connection
     func isConnectedInternet()->Bool{
         let reachabilityManager = Alamofire.NetworkReachabilityManager()!
         return reachabilityManager.isReachable
