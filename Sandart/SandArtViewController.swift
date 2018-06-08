@@ -23,7 +23,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     var downloadProgress:Dictionary<String,Float> = Dictionary<String,Float>()
     var downloadingPath = Array<IndexPath>()
     var timerSet = false
-    let SandArtLanguages = ["Korean" ,"English","Chinese","Chinese Traditional","Japanese", "Russian", "French", "Spanish", "Hindi","Mongolia", "Polish", "Turkish", "Nepali", "Indonesia","Thai", "Cambodian", "Filipino","Vietnamese","Arabic","Lao"]
+    let SandArtLanguages = ["Korean" ,"English","Chinese","Chinese Traditional","Japanese", "Russian", "French", "Spanish", "Hindi","Mongolia", "Polish", "Turkish", "Nepali", "Indonesia","Thai", "Cambodian", "Filipino","Vietnamese","Arabic","Lao","Persian"]
     let manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "org.kccc.P4U.background"))
     override func viewDidLoad() {
         super.viewDidLoad()
