@@ -35,6 +35,8 @@
 		429980CB206680B90078CEE9 /* SandArtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429980CA206680B90078CEE9 /* SandArtViewController.swift */; };
 		429980CF2066870E0078CEE9 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429980CE2066870E0078CEE9 /* LanguageTableViewCell.swift */; };
 		42D4005D2077293100EF81D8 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4005C2077293100EF81D8 /* SettingTableViewController.swift */; };
+		4BC1FBD9213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */; };
+		4BC1FBDB213D4BB500B9E6F6 /* PortraitTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */; };
 		A390923FEE3086197AEF0686 /* Pods_SandartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552F261189DD84BEA8961CD0 /* Pods_SandartTests.framework */; };
 		C9288012E2DB55F8BE647CF1 /* Pods_SandartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A2D7E796FC3AB8DE699856 /* Pods_SandartUITests.framework */; };
 		D62FAC8C1F47E28B6162A7EA /* Pods_Sandart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A881EC92E2189D91058B3 /* Pods_Sandart.framework */; };
@@ -96,6 +98,8 @@
 		429980CA206680B90078CEE9 /* SandArtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandArtViewController.swift; sourceTree = "<group>"; };
 		429980CE2066870E0078CEE9 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		42D4005C2077293100EF81D8 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeAVPlayerViewController.swift; sourceTree = "<group>"; };
+		4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitTabBarController.swift; sourceTree = "<group>"; };
 		552F261189DD84BEA8961CD0 /* Pods_SandartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SandartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7083CE856AD81FF033FDCC59 /* Pods-SandartUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SandartUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SandartUITests/Pods-SandartUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		720D26C70D20E5373153C494 /* Pods-SandartUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SandartUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SandartUITests/Pods-SandartUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				42357F302063865E00DDCF7F /* Assets.xcassets */,
 				4227BCAB205A68290064D6EA /* LaunchScreen.storyboard */,
 				4227BCAE205A68290064D6EA /* Info.plist */,
+				4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */,
+				4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */,
 			);
 			path = Sandart;
 			sourceTree = "<group>";
@@ -488,6 +494,8 @@
 				429980CF2066870E0078CEE9 /* LanguageTableViewCell.swift in Sources */,
 				428ADE26206CD83700EB88A3 /* SandartEntryTable.swift in Sources */,
 				429980CB206680B90078CEE9 /* SandArtViewController.swift in Sources */,
+				4BC1FBDB213D4BB500B9E6F6 /* PortraitTabBarController.swift in Sources */,
+				4BC1FBD9213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift in Sources */,
 				4227BCA3205A68280064D6EA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

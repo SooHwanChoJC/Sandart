@@ -17,8 +17,14 @@ let MaxConcurrentDownload = 3
 class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
     var table:SandartEntryTable?
-    var playerView:AVPlayerViewController?
+    var playerView:LandscapeAVPlayerViewController?
     var requestDic:Dictionary<String,Alamofire.Request> = Dictionary<String,Alamofire.Request>()
     var downloadProgress:Dictionary<String,Float> = Dictionary<String,Float>()
     var downloadingPath = Array<IndexPath>()
@@ -185,12 +191,13 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let url = documentsURL.appendingPathComponent("SandArt/" + entry!.LangKey + ".mp4")
             let player = AVPlayer(url: url)
-            playerView = AVPlayerViewController()
+            playerView = LandscapeAVPlayerViewController()
             playerView!.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             playerView!.player = player
            NotificationCenter.default.addObserver(self, selector: #selector(moviePlayerPlaybackDidFinish(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: playerView!.player?.currentItem)
             playerView!.view.frame = self.view.frame
             self.present(playerView!, animated: true){
+                UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue,forKey:"orientation")
                 self.playerView!.player?.play()
             }
         }
@@ -198,6 +205,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     //MARK: - event helpers
     @objc func moviePlayerPlaybackDidFinish(notification:Notification){
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue,forKey:"orientation")
         playerView?.dismiss(animated: true, completion: nil)
         
     }
