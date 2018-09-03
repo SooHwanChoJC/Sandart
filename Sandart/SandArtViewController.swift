@@ -149,7 +149,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
               
             }
             requestDic[langkey] = request
-            if(!self.timerSet){
+           if(!self.timerSet){
             Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updatePeriodically(timer:)), userInfo: nil, repeats: true)
                 self.timerSet = true
             }
@@ -294,24 +294,14 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
                 languageLabel.text = entry!.Title
             }
             let actionButton = cell.contentView.viewWithTag(2) as! UIButton
-            let progressBar = cell.viewWithTag(3) as! UIProgressView
 
             actionButton.setTitle(entry!.LangKey, for: UIControlState.application)//set product identifier for purchase
             cell.selectionStyle = UITableViewCellSelectionStyle.none
-            progressBar.setProgress(downloadProgress[entry!.LangKey]!, animated: false)
+            cell.Progress.setProgress(downloadProgress[entry!.LangKey]!, animated: false)
             self.updateButton(cell:cell, withStatus: entry!.Status,indexPath: indexPath)
             return cell
          
         }
-    }
-   func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        //Because of Xcode bug, must implement this method to set dynamic cell's individual height
-        let Identifier = (indexPath.section == 0) ? "ImageCell" : "LanguageCell"
-        let Rawcell = tableView.dequeueReusableCell(withIdentifier: Identifier)
-        
-        return Rawcell!.bounds.size.height
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
