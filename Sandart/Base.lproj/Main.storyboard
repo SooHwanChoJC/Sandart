@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FSw-fg-jtY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FSw-fg-jtY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -181,11 +181,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="99" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" image="SandArtTop.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q1Y-wt-07d">
+                                        <imageView userInteractionEnabled="NO" tag="99" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="SandArtTop.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q1Y-wt-07d">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Q1Y-wt-07d" secondAttribute="bottom" constant="0.5" id="8gd-6N-hYv"/>
+                                        <constraint firstItem="Q1Y-wt-07d" firstAttribute="leading" secondItem="clx-Uh-Ge1" secondAttribute="leading" id="FUD-Zh-M7o"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q1Y-wt-07d" secondAttribute="trailing" id="akl-Ny-klG"/>
+                                        <constraint firstItem="Q1Y-wt-07d" firstAttribute="top" secondItem="clx-Uh-Ge1" secondAttribute="top" id="y3o-KN-sZf"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LanguageCell" rowHeight="48" id="Yjz-9l-IlL" customClass="LanguageTableViewCell" customModule="Sandart" customModuleProvider="target">
@@ -195,49 +200,57 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-LD-hFe">
-                                            <rect key="frame" x="20" y="12" width="180" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                        <label opaque="NO" clipsSubviews="YES" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="xSZ-LD-hFe">
+                                            <rect key="frame" x="20" y="5" width="180" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="180" id="JbV-Fe-Uks"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" tag="2" contentMode="right" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSX-Ct-wNS">
-                                            <rect key="frame" x="323" y="7" width="32" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                        <button opaque="NO" tag="2" contentMode="right" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSX-Ct-wNS">
+                                            <rect key="frame" x="323" y="8" width="32" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="7sh-0x-edx"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="Phf-WI-vEu"/>
+                                                <constraint firstAttribute="height" constant="32" id="Xdc-i0-KlQ"/>
+                                                <constraint firstAttribute="width" constant="32" id="nQs-LX-6lQ"/>
+                                            </constraints>
                                             <state key="normal" image="Download"/>
                                             <connections>
                                                 <action selector="download:" destination="ONx-Au-P1O" eventType="touchUpInside" id="YIc-Jb-JVF"/>
                                                 <action selector="purchase:" destination="ONx-Au-P1O" eventType="touchUpInside" id="b6N-OZ-abD"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="4" contentMode="right" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlS-YK-AJh">
-                                            <rect key="frame" x="247" y="7" width="100" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                            <state key="normal" title="$0.99">
-                                                <color key="titleColor" red="0.73725490199999999" green="0.47843137250000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="purchase:" destination="ONx-Au-P1O" eventType="touchUpInside" id="4fK-0j-kXI"/>
-                                            </connections>
-                                        </button>
-                                        <progressView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" tag="3" contentMode="scaleAspectFill" semanticContentAttribute="forceLeftToRight" verticalHuggingPriority="750" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7fr-OO-bk9">
-                                            <rect key="frame" x="263" y="23" width="60" height="3"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
+                                        <progressView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" tag="3" contentMode="scaleAspectFill" semanticContentAttribute="forceLeftToRight" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7fr-OO-bk9">
+                                            <rect key="frame" x="263" y="14" width="60" height="2"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" red="0.73725490199999999" green="0.47843137250000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" updatesFrequently="YES" adjustable="YES"/>
                                                 <bool key="isElement" value="YES"/>
                                             </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="2Vu-8w-tqS"/>
+                                            </constraints>
                                         </progressView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="WSX-Ct-wNS" firstAttribute="top" secondItem="X9c-G2-iU0" secondAttribute="top" constant="8" id="7qv-5m-j31"/>
+                                        <constraint firstAttribute="trailing" secondItem="WSX-Ct-wNS" secondAttribute="trailing" constant="20" id="9jJ-G9-FIX"/>
+                                        <constraint firstItem="xSZ-LD-hFe" firstAttribute="leading" secondItem="X9c-G2-iU0" secondAttribute="leading" constant="20" id="DyY-Nd-f0s"/>
+                                        <constraint firstItem="xSZ-LD-hFe" firstAttribute="top" secondItem="X9c-G2-iU0" secondAttribute="top" constant="5" id="Flc-LL-uit"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="7fr-OO-bk9" secondAttribute="trailing" constant="36" id="ZjF-qT-1r7"/>
+                                        <constraint firstItem="7fr-OO-bk9" firstAttribute="centerY" secondItem="X9c-G2-iU0" secondAttribute="centerY" id="f4z-KS-upf"/>
+                                        <constraint firstAttribute="bottom" secondItem="WSX-Ct-wNS" secondAttribute="bottom" constant="8" id="psn-CP-oVy"/>
+                                        <constraint firstAttribute="bottom" secondItem="xSZ-LD-hFe" secondAttribute="bottom" constant="5" id="yQU-X6-CnE"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="DownloadButton" destination="WSX-Ct-wNS" id="DgU-xH-6gk"/>
                                     <outlet property="LanguageLabel" destination="xSZ-LD-hFe" id="rZO-8T-7M9"/>
                                     <outlet property="Progress" destination="7fr-OO-bk9" id="kxm-JC-s0e"/>
-                                    <outlet property="PurchaseButton" destination="qlS-YK-AJh" id="rto-3r-E1U"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -249,10 +262,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26A-3W-Z3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3M1-3a-GGe">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </objects>
             <point key="canvasLocation" x="-207.19999999999999" y="-240.62968515742131"/>
         </scene>

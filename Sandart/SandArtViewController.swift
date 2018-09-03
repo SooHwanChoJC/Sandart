@@ -227,10 +227,8 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let cell = cell as! LanguageTableViewCell
         let button = cell.viewWithTag(2) as! UIButton
         let progressBar = cell.viewWithTag(3) as! UIProgressView
-        let priceButton = cell.viewWithTag(4) as! UIButton
         button.isHidden = false
         progressBar.isHidden = true
-        priceButton.isHidden = true
         switch(status){
         case MovieStatus.NotDownloaded:
             button.setImage(UIImage(named: "Download.png"), for: UIControlState.normal)
