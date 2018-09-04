@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PortraitTabBarController:UITabBarController{
+class PortraitTabBarController:UITabBarController{//inherits to fix orientation
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
         return [.portrait]
     }

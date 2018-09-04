@@ -81,7 +81,8 @@ class SettingTableViewController: UITableViewController{
                     os_log("file delete Error")
                 }
 
-                let tvc = self.tabBarController?.viewControllers![0] as! SandArtViewController
+                let nvc = self.tabBarController?.viewControllers![0] as! UINavigationController
+                let tvc = nvc.viewControllers[0] as! SandArtViewController
                 tvc.reloadEntyTableWithLangKey(langkey: identifier)
                 tvc.tableView.reloadData()
             }

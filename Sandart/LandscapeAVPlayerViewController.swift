@@ -9,7 +9,7 @@
 import Foundation
 import AVKit
 
-class LandscapeAVPlayerViewController:AVPlayerViewController{
+class LandscapeAVPlayerViewController:AVPlayerViewController{//Inherits to fix orientation
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
         return .landscapeLeft
     }
