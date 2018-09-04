@@ -39,7 +39,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         
         let tabbarHeight = self.tabBarController!.tabBar.frame.size.height
-        self.tableView.contentInset = UIEdgeInsetsMake(0,0,tabbarHeight,0)
+        self.tableView.contentInset = UIEdgeInsets.init(top: 0,left: 0,bottom: tabbarHeight,right: 0)
         
         if(table == nil)
         {
@@ -80,7 +80,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     @objc @IBAction func download(_ sender: Any) {
         let button = sender as! UIButton
-        let langKey = button.title(for: UIControlState.application)
+        let langKey = button.title(for: UIControl.State.application)
         
         self.downloadWithLangKey(langkey: langKey!)
     }
@@ -174,7 +174,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
 }
     @objc @IBAction func cancelDownloading(_ sender:Any){
         let button = sender as! UIButton
-        let langKey = button.title(for: UIControlState.application)
+        let langKey = button.title(for: UIControl.State.application)
         let indexPath = IndexPath.init(row: (table?.indexForLangKey(langKey!))!, section: 1)
         let download = requestDic[langKey!]
         
@@ -212,7 +212,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func entryForSender(_ sender:Any)->SandartEntry?{
         let button = sender as! UIButton
-        let langkey = button.title(for: UIControlState.application)
+        let langkey = button.title(for: UIControl.State.application)
         let entry = table!.entryWithLangKey(langkey!)
         return entry
     }
@@ -239,24 +239,24 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         progressBar.isHidden = true
         switch(status){
         case MovieStatus.NotDownloaded:
-            button.setImage(UIImage(named: "Download.png"), for: UIControlState.normal)
-            button.imageView!.contentMode = UIViewContentMode.scaleAspectFill
-            button.removeTarget(self, action: #selector(SandArtViewController.cancelDownloading(_:)), for: UIControlEvents.touchUpInside)
-            button.removeTarget(self, action: #selector(SandArtViewController.play(_:)), for: UIControlEvents.touchUpInside)
-            button.addTarget(self, action: #selector(SandArtViewController.download(_:)), for: UIControlEvents.touchUpInside)
+            button.setImage(UIImage(named: "Download.png"), for: UIControl.State.normal)
+            button.imageView!.contentMode = UIView.ContentMode.scaleAspectFill
+            button.removeTarget(self, action: #selector(SandArtViewController.cancelDownloading(_:)), for: UIControl.Event.touchUpInside)
+            button.removeTarget(self, action: #selector(SandArtViewController.play(_:)), for: UIControl.Event.touchUpInside)
+            button.addTarget(self, action: #selector(SandArtViewController.download(_:)), for: UIControl.Event.touchUpInside)
         case MovieStatus.Downloading:
             progressBar.isHidden = false
-            button.setImage(UIImage(named: "Stop.png"), for: UIControlState.normal)
-            button.imageView?.contentMode = UIViewContentMode.scaleAspectFill
-            button.removeTarget(self, action: #selector(SandArtViewController.play(_:)), for: UIControlEvents.touchUpInside)
-            button.removeTarget(self, action: #selector(SandArtViewController.download(_:)), for: UIControlEvents.touchUpInside)
-            button.addTarget(self, action: #selector(SandArtViewController.cancelDownloading(_:)), for: UIControlEvents.touchUpInside)
+            button.setImage(UIImage(named: "Stop.png"), for: UIControl.State.normal)
+            button.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
+            button.removeTarget(self, action: #selector(SandArtViewController.play(_:)), for: UIControl.Event.touchUpInside)
+            button.removeTarget(self, action: #selector(SandArtViewController.download(_:)), for: UIControl.Event.touchUpInside)
+            button.addTarget(self, action: #selector(SandArtViewController.cancelDownloading(_:)), for: UIControl.Event.touchUpInside)
         case MovieStatus.Downloaded:
-            button.setImage(UIImage(named: "Play.png"), for: UIControlState.normal)
-            button.imageView?.contentMode = UIViewContentMode.scaleAspectFill
-            button.removeTarget(self, action: #selector(SandArtViewController.download(_:)), for: UIControlEvents.touchUpInside)
-            button.removeTarget(self, action: #selector(SandArtViewController.cancelDownloading(_:)), for: UIControlEvents.touchUpInside)
-            button.addTarget(self, action: #selector(SandArtViewController.play(_:)), for: UIControlEvents.touchUpInside)
+            button.setImage(UIImage(named: "Play.png"), for: UIControl.State.normal)
+            button.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
+            button.removeTarget(self, action: #selector(SandArtViewController.download(_:)), for: UIControl.Event.touchUpInside)
+            button.removeTarget(self, action: #selector(SandArtViewController.cancelDownloading(_:)), for: UIControl.Event.touchUpInside)
+            button.addTarget(self, action: #selector(SandArtViewController.play(_:)), for: UIControl.Event.touchUpInside)
             break
         }
         
@@ -279,7 +279,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let Rawcell = tableView.dequeueReusableCell(withIdentifier: Identifier)
          if(indexPath.section == 0)
          {
-            Rawcell?.selectionStyle = UITableViewCellSelectionStyle.none
+            Rawcell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
             return Rawcell!
          }
@@ -295,8 +295,8 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             }
             let actionButton = cell.contentView.viewWithTag(2) as! UIButton
 
-            actionButton.setTitle(entry!.LangKey, for: UIControlState.application)//set product identifier for purchase
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            actionButton.setTitle(entry!.LangKey, for: UIControl.State.application)//set product identifier for purchase
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.Progress.setProgress(downloadProgress[entry!.LangKey]!, animated: false)
             self.updateButton(cell:cell, withStatus: entry!.Status,indexPath: indexPath)
             return cell
@@ -326,8 +326,8 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         return 2
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == UITableViewCellEditingStyle.delete)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCell.EditingStyle.delete)
         {
             let entry = table!.entryAtIndex(index: indexPath.row)
             do{
@@ -340,7 +340,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             }
             self.update(indexPath: indexPath, withStatus: MovieStatus.NotDownloaded)
         }
-        else if (editingStyle == UITableViewCellEditingStyle.insert){
+        else if (editingStyle == UITableViewCell.EditingStyle.insert){
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
