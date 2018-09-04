@@ -25,7 +25,6 @@
 		3A688C95209847AF0075F262 /* AppIcon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A688C85209847AE0075F262 /* AppIcon40.png */; };
 		4227BCA3205A68280064D6EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227BCA2205A68280064D6EA /* AppDelegate.swift */; };
 		4227BCAD205A68290064D6EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4227BCAB205A68290064D6EA /* LaunchScreen.storyboard */; };
-		4227BCB8205A68290064D6EA /* SandartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227BCB7205A68290064D6EA /* SandartTests.swift */; };
 		4227BCC3205A68290064D6EA /* SandartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227BCC2205A68290064D6EA /* SandartUITests.swift */; };
 		42357F312063865E00DDCF7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42357F302063865E00DDCF7F /* Assets.xcassets */; };
 		4283B93220775812009C35B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4283B93420775812009C35B7 /* Localizable.strings */; };
@@ -37,6 +36,7 @@
 		42D4005D2077293100EF81D8 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4005C2077293100EF81D8 /* SettingTableViewController.swift */; };
 		4BC1FBD9213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */; };
 		4BC1FBDB213D4BB500B9E6F6 /* PortraitTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */; };
+		4BC1FBE1213E360E00B9E6F6 /* SandartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227BCB7205A68290064D6EA /* SandartTests.swift */; };
 		A390923FEE3086197AEF0686 /* Pods_SandartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552F261189DD84BEA8961CD0 /* Pods_SandartTests.framework */; };
 		C9288012E2DB55F8BE647CF1 /* Pods_SandartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A2D7E796FC3AB8DE699856 /* Pods_SandartUITests.framework */; };
 		D62FAC8C1F47E28B6162A7EA /* Pods_Sandart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79A881EC92E2189D91058B3 /* Pods_Sandart.framework */; };
@@ -504,7 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4227BCB8205A68290064D6EA /* SandartTests.swift in Sources */,
+				4BC1FBE1213E360E00B9E6F6 /* SandartTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,9 +681,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5LS63YU68Q;
+				DEVELOPMENT_TEAM = TNJ2M3BZTY;
 				INFOPLIST_FILE = Sandart/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.kccc.P4U;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -698,9 +698,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5LS63YU68Q;
+				DEVELOPMENT_TEAM = TNJ2M3BZTY;
 				INFOPLIST_FILE = Sandart/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.kccc.P4U;
 				PRODUCT_NAME = "$(TARGET_NAME)";
