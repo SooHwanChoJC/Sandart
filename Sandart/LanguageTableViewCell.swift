@@ -12,10 +12,11 @@ class LanguageTableViewCell: UITableViewCell {
 
     @IBOutlet var LanguageLabel: UILabel!
     @IBOutlet var DownloadButton: UIButton!
-    @IBOutlet var PurchaseButton: UIButton!
     @IBOutlet var Progress: UIProgressView!
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.setEditing(true, animated: true)
+        self.showsReorderControl = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,7 +25,7 @@ class LanguageTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-            preservesSuperviewLayoutMargins = true
+        preservesSuperviewLayoutMargins = true
         
     }
 

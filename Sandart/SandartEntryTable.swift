@@ -10,7 +10,6 @@ import Foundation
 
 class SandartEntryTable{
     var Entries = [SandartEntry]()
-    
     init(With LangKeys:Array<String?>){
         for key in LangKeys
         {

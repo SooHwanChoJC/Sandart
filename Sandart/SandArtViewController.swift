@@ -29,7 +29,8 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     var downloadProgress:Dictionary<String,Float> = Dictionary<String,Float>()
     var downloadingPath = Array<IndexPath>()
     var timerSet = false
-    let SandArtLanguages = ["Korean" ,"English","Chinese","Chinese Traditional","Japanese", "Russian", "French", "Spanish", "Hindi","Mongolia", "Polish", "Turkish", "Nepali", "Indonesia","Thai", "Cambodian", "Filipino","Vietnamese","Arabic","Lao","Persian"]
+    var isEditMode = false//false : Normal Mode. true : EditMode
+    let SandArtLanguages = LanguageData()
     let manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "org.kccc.P4U.background"))
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +41,11 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         let tabbarHeight = self.tabBarController!.tabBar.frame.size.height
         self.tableView.contentInset = UIEdgeInsets.init(top: 0,left: 0,bottom: tabbarHeight,right: 0)
-        
         if(table == nil)
         {
-            table = SandartEntryTable(With: SandArtLanguages)
+            table = SandartEntryTable(With: SandArtLanguages.getLanguages())
         }
-        for identifier in SandArtLanguages{
+        for identifier in SandArtLanguages.getLanguages(){
             downloadProgress[identifier] = 0.0
         }
     }
@@ -269,7 +269,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             return 1
         }
         else{
-        return self.SandArtLanguages.count
+        return self.SandArtLanguages.count()
         }
     }
     
@@ -313,7 +313,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         {
             return false
         }
-        if(indexPath.section != 0&&(table!.entryAtIndex(index: indexPath.row))!.Status == MovieStatus.Downloaded)
+        if(indexPath.section != 0)
         {
             return true
         }
@@ -344,12 +344,28 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-
-    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if(indexPath.section != 0&&(table!.entryAtIndex(index: indexPath.row))!.Status == MovieStatus.Downloaded)
+        {
+            return .delete
+        }
+        else{
+            return .none
+        }
+    }
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+                let temp = SandArtLanguages.getLanguage(sourceIndexPath.row)
+                SandArtLanguages.setLanguage(sourceIndexPath.row, data: SandArtLanguages.getLanguage(destinationIndexPath.row))
+                SandArtLanguages.setLanguage(destinationIndexPath.row, data: temp)
+    }
+ 
     //MARK: - Update UI
     func displayUI(){
         
-        for langKey in self.SandArtLanguages{
+        for langKey in self.SandArtLanguages.getLanguages(){
             let entry = table!.entryWithLangKey(langKey)
             entry!.Title = NSLocalizedString(langKey, comment: langKey)
             entry!.persistForKey(langKey)
@@ -414,4 +430,22 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let reachabilityManager = Alamofire.NetworkReachabilityManager()!
         return reachabilityManager.isReachable
     }
+    
+    //MARK:- EditButton's Action
+    @IBAction func toggleEditMode(_ sender: Any) {
+
+        if(self.isEditMode == false){
+            self.navigationItem.rightBarButtonItem!.title = "Done"
+            self.tableView.setEditing(true, animated: true)
+            self.isEditMode = true
+        }
+        else{
+            self.navigationItem.rightBarButtonItem!.title = "Edit"
+            self.tableView.setEditing(false, animated: true)
+            self.isEditMode = false
+            SandArtLanguages.SaveLanguageData()
+        }
+        self.tableView.reloadData()
+    }
+    
 }
