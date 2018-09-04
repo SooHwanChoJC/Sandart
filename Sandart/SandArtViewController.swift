@@ -304,7 +304,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {//notice if a cell is editable(insert,delete)
         if(table==nil)
         {
             return false
@@ -326,7 +326,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         return 2
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {//actions when you edited row(insert,delete)
         if(editingStyle == UITableViewCell.EditingStyle.delete)
         {
             let entry = table!.entryAtIndex(index: indexPath.row)
@@ -344,19 +344,27 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if(indexPath.section != 0&&(table!.entryAtIndex(index: indexPath.row))!.Status == MovieStatus.Downloaded)
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {//notice editing style(insert, delete)
+        if(indexPath.section != 0&&(table!.entryAtIndex(index: indexPath.row))!.Status == MovieStatus.Downloaded)//only for downloaded items
         {
             return .delete
         }
-        else{
+        else{//otherwise, nothing to do except reorder
             return .none
         }
     }
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {//notice a cell is reorderable
+        if downloadingPath.count != 0{//while downloading something else, block reorder
+            return false
+        }
+        else{
+            return true
+        }
     }
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {//actions when you reordered rows
                 let temp = SandArtLanguages.getLanguage(sourceIndexPath.row)
                 SandArtLanguages.setLanguage(sourceIndexPath.row, data: SandArtLanguages.getLanguage(destinationIndexPath.row))
                 SandArtLanguages.setLanguage(destinationIndexPath.row, data: temp)
@@ -443,7 +451,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             self.navigationItem.rightBarButtonItem!.title = "Edit"
             self.tableView.setEditing(false, animated: true)
             self.isEditMode = false
-            SandArtLanguages.SaveLanguageData()
+            SandArtLanguages.SaveLanguageData()//only affeted if press Done Button
         }
         self.tableView.reloadData()
     }
