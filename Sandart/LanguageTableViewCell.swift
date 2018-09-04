@@ -14,7 +14,7 @@ class LanguageTableViewCell: UITableViewCell {
     @IBOutlet var DownloadButton: UIButton!
     @IBOutlet var PurchaseButton: UIButton!
     @IBOutlet var Progress: UIProgressView!
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
