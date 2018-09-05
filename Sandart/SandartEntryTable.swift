@@ -71,4 +71,9 @@ class SandartEntryTable{
         
         return StorePath
     }
+    func swapEntry(from sourceIndex:Int,to destinationIndex:Int){
+        let temp = Entries[sourceIndex]
+        Entries[sourceIndex] = Entries[destinationIndex]
+        Entries[destinationIndex] = temp
+    }
 }
