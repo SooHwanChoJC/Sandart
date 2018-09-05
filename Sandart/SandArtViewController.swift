@@ -368,6 +368,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
                 let temp = SandArtLanguages.getLanguage(sourceIndexPath.row)
                 SandArtLanguages.setLanguage(sourceIndexPath.row, data: SandArtLanguages.getLanguage(destinationIndexPath.row))
                 SandArtLanguages.setLanguage(destinationIndexPath.row, data: temp)
+                table!.swapEntry(from:sourceIndexPath.row,to:destinationIndexPath.row)
     }
  
     //MARK: - Update UI
@@ -427,6 +428,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         if self.downloadingPath.count == 0{
             timer.invalidate()
             self.timerSet = false
+            self.tableView.reloadData()//last reload
             return
         }
         else{
@@ -453,7 +455,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             self.isEditMode = false
             SandArtLanguages.SaveLanguageData()//only affeted if press Done Button
         }
-        self.tableView.reloadData()
     }
     
 }
