@@ -278,6 +278,12 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="SandArt" image="HandLine" selectedImage="HandFull" id="Xv6-1o-UUr"/>
                     <navigationItem key="navigationItem" id="ADE-5s-yxE">
+                        <barButtonItem key="leftBarButtonItem" title="Reorder" id="T6Q-hj-PPX">
+                            <color key="tintColor" red="0.73725490199999999" green="0.47843137250000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="reorderTable:" destination="ONx-Au-P1O" id="PHV-Yo-bvL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="xcj-4m-hBI">
                             <color key="tintColor" red="0.73725490199999999" green="0.47843137250000001" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -287,6 +293,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="ReorderButton" destination="T6Q-hj-PPX" id="Khz-G3-dk1"/>
                         <outlet property="tableView" destination="TVx-9X-6mz" id="uUQ-Og-0th"/>
                     </connections>
                 </viewController>

@@ -34,6 +34,7 @@
 		429980CB206680B90078CEE9 /* SandArtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429980CA206680B90078CEE9 /* SandArtViewController.swift */; };
 		429980CF2066870E0078CEE9 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429980CE2066870E0078CEE9 /* LanguageTableViewCell.swift */; };
 		42D4005D2077293100EF81D8 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4005C2077293100EF81D8 /* SettingTableViewController.swift */; };
+		4B379C75214607B40098C35F /* ConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B379C74214607B40098C35F /* ConnectionChecker.swift */; };
 		4BC1FBD9213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */; };
 		4BC1FBDB213D4BB500B9E6F6 /* PortraitTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */; };
 		4BC1FBE1213E360E00B9E6F6 /* SandartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227BCB7205A68290064D6EA /* SandartTests.swift */; };
@@ -99,6 +100,7 @@
 		429980CA206680B90078CEE9 /* SandArtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandArtViewController.swift; sourceTree = "<group>"; };
 		429980CE2066870E0078CEE9 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		42D4005C2077293100EF81D8 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		4B379C74214607B40098C35F /* ConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionChecker.swift; sourceTree = "<group>"; };
 		4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeAVPlayerViewController.swift; sourceTree = "<group>"; };
 		4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitTabBarController.swift; sourceTree = "<group>"; };
 		4BC1FBE2213E8B1300B9E6F6 /* LanguageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageData.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */,
 				4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */,
 				4BC1FBE2213E8B1300B9E6F6 /* LanguageData.swift */,
+				4B379C74214607B40098C35F /* ConnectionChecker.swift */,
 			);
 			path = Sandart;
 			sourceTree = "<group>";
@@ -460,10 +463,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Sandart/Pods-Sandart-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -498,6 +503,7 @@
 				42D4005D2077293100EF81D8 /* SettingTableViewController.swift in Sources */,
 				428ADE24206CC01C00EB88A3 /* SandartEntry.swift in Sources */,
 				429980CF2066870E0078CEE9 /* LanguageTableViewCell.swift in Sources */,
+				4B379C75214607B40098C35F /* ConnectionChecker.swift in Sources */,
 				4BC1FBE3213E8B1300B9E6F6 /* LanguageData.swift in Sources */,
 				428ADE26206CD83700EB88A3 /* SandartEntryTable.swift in Sources */,
 				429980CB206680B90078CEE9 /* SandArtViewController.swift in Sources */,

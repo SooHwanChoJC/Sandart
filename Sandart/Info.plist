@@ -20,51 +20,6 @@
 	<string>1.1.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>Download Paths</key>
-	<dict>
-		<key>Arabic</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Arabic.mp4</string>
-		<key>Cambodian</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Cambodian.mp4</string>
-		<key>Chinese</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese.mp4</string>
-		<key>Chinese Traditional</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4</string>
-		<key>English</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_English.mp4</string>
-		<key>Filipino</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Filipino.mp4</string>
-		<key>French</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_French.mp4</string>
-		<key>Hindi</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Hindi.mp4</string>
-		<key>Indonesia</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Indonesian.mp4</string>
-		<key>Japanese</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Japanese.mp4</string>
-		<key>Korean</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Korean.mp4</string>
-		<key>Lao</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Laos.mp4</string>
-		<key>Mongolia</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Mongolia.mp4</string>
-		<key>Nepali</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Nepali.mp4</string>
-		<key>Persian</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Persian.mp4</string>
-		<key>Polish</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Polish.mp4</string>
-		<key>Russian</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Russian.mp4</string>
-		<key>Spanish</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Spanish.mp4</string>
-		<key>Thai</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Thai.mp4</string>
-		<key>Turkish</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Turkish.mp4</string>
-		<key>Vietnamese</key>
-		<string>http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4</string>
-	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

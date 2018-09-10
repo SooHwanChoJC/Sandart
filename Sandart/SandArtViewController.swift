@@ -17,6 +17,8 @@ let MaxConcurrentDownload = 3
 class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var ReorderButton: UIBarButtonItem!
+    
     override var shouldAutorotate: Bool {
         return true
     }
@@ -86,7 +88,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func downloadWithLangKey(langkey:String){
-        if !isConnectedInternet(){
+        if !ConnectionChecker.isConnectedInternet(){
             let title = "Download_Error"
             let message = "CheckInternet"
             let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
@@ -107,7 +109,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             return
         }
         if entry?.Status == MovieStatus.NotDownloaded{
-            let targetPath = (Bundle.main.object(forInfoDictionaryKey: "Download Paths") as! NSDictionary).object(forKey: langkey) as! String
+            let targetPath = SandArtLanguages.getMovieDownloadLink(langkey)
             let url = URL.init(string: targetPath)//download url
             //downloading with alamofire
             let destination:DownloadRequest.DownloadFileDestination = { _, _ in
@@ -390,13 +392,13 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }
         
         if(!(isLaunchedSuccesfullyBefore!)){
-            if !self.isConnectedInternet(){
+            if !(ConnectionChecker.isConnectedInternet()){
             let title = "FirstLaunchError"
             let message = "CheckInternet"
             let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
             let retry = UIAlertAction(title: NSLocalizedString("Retry", comment: "Retry"), style: .default){
                 (action: UIAlertAction) in
-                if(self.isConnectedInternet()){
+                if(ConnectionChecker.isConnectedInternet()){
                     self.displayUI()
                     UserDefaults.standard.set(true, forKey: "AlreadyLaunchedSuccessfullyBefore")
                 }
@@ -435,26 +437,39 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             self.tableView.reloadRows(at: self.downloadingPath, with: .none)
         }
     }
-    //MARK:- Connection
-    func isConnectedInternet()->Bool{
-        let reachabilityManager = Alamofire.NetworkReachabilityManager()!
-        return reachabilityManager.isReachable
-    }
-    
-    //MARK:- EditButton's Action
+    //MARK:- BarButton's Action
     @IBAction func toggleEditMode(_ sender: Any) {
 
         if(self.isEditMode == false){
             self.navigationItem.rightBarButtonItem!.title = "Done"
             self.tableView.setEditing(true, animated: true)
             self.isEditMode = true
+            self.ReorderButton.isEnabled = false
         }
         else{
             self.navigationItem.rightBarButtonItem!.title = "Edit"
             self.tableView.setEditing(false, animated: true)
             self.isEditMode = false
             SandArtLanguages.SaveLanguageData()//only affeted if press Done Button
+            self.ReorderButton.isEnabled = true
         }
+    }
+    @IBAction func reorderTable(_ sender: Any) {
+        let title = "Confirm"
+        let message = "ReorderTable"
+        let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
+        let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default){
+             (action: UIAlertAction)  in
+                self.SandArtLanguages.reorder()
+                self.table = SandartEntryTable(With: self.SandArtLanguages.getLanguages())
+                self.tableView.reloadData()
+        }
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"),style: .cancel)
+        
+        av.addAction(ok)
+        av.addAction(cancel)
+        
+        self.present(av, animated: true, completion: nil)
     }
     
 }
