@@ -12,40 +12,28 @@ import SwiftyJSON
 
 class LanguageData{
     private var Language:[String]? = []
-    private var movieDownloadLink:[String:String]? = [:]
+    private var MovieDownloadLink:[String:String]? = [:]
+    private var DisplayText:[String:String]? = [:]
+    private var Version:Int?
     init(){
-        Language = UserDefaults.standard.array(forKey: "Languages") as? [String]
-        movieDownloadLink = UserDefaults.standard.dictionary(forKey: "movieDownloadLink") as? [String:String]
-        if Language == nil || movieDownloadLink == nil{
-            Language = ["English","Chinese","Chinese Traditional","Japanese","Russian","French","Spanish","Hindi","Mongolia","Polish",
-            "Turkish","Nepali","Indonesia","Thai","Cambodian", "Filipino","Vietnamese","Arabic","Lao","Persian"]
-            movieDownloadLink = ["Korean":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Korean.mp4" ,
-                        "English":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_English.mp4",
-                        "Chinese":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese.mp4",
-                        "Chinese Traditional":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4",
-                        "Japanese":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4",
-                        "Russian":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Russian.mp4",
-                        "French":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_French.mp4",
-                        "Spanish":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Spanish.mp4",
-                        "Hindi":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Hindi.mp4",
-                        "Mongolia":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Mongolia.mp4",
-                        "Polish":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Polish.mp4",
-                        "Turkish":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Turkish.mp4",
-                        "Nepali":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Nepali.mp4",
-                        "Indonesia":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Indonesian.mp4",
-                        "Thai":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Thai.mp4",
-                        "Cambodian":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Cambodian.mp4",
-                        "Filipino":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Filipino.mp4",
-                        "Vietnamese":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4",
-                        "Arabic":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4",
-                        "Lao":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Laos.mp4",
-                        "Persian":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Persian.mp4"]
-            Language!.sort()
-            Language!.insert("Korean", at: 0)
-            UserDefaults.standard.set(Language, forKey: "Languages")
-            UserDefaults.standard.set(movieDownloadLink,forKey:"movieDownloadLink")
+        
+        let LocalJSONPath = Bundle.main.path(forResource: "SandartLanguages", ofType: "json")
+        let LocalJSONURL = URL(fileURLWithPath: LocalJSONPath!)
+        if let data = try? String(contentsOf: LocalJSONURL){
+            let json = JSON(parseJSON: data)
+            Version = json["Version"].intValue
+            Language = json["Data"].dictionaryValue.map{
+                $0.key
+            }
+            MovieDownloadLink = json["Data"].dictionaryValue.mapValues{
+                $0["Link"].stringValue
+            }
+            DisplayText = json["Data"].dictionaryValue.mapValues{
+                $0["Text"].stringValue
+            }
         }
-        //JSON버젼을 체크하고, 최신 버젼이 있으면 업데이트 후 반영한다.(항목 개수를 체크해서 더 많으면 추가하는 방식)
+      
+        //JSON버젼을 체크하고, 최신 버젼이 있으면 업데이트 후 반영한다.(버젼을 체크)
         if(ConnectionChecker.isConnectedInternet()){
             let URL = "http://www.sandartp4u.com/"//JSON LINK
             
@@ -53,20 +41,13 @@ class LanguageData{
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    let tempLanguage = json.dictionaryValue.map{
-                        $0.key
+                    let tempVersion = json["Version"].intValue
+              
+                    if(tempVersion != self.Version){//버전이 다르면 파일을 지우고 새로운 데이터를 넣어서 다시 만든다.
+                        let fileManager = FileManager.default
+                        try? fileManager.removeItem(at: LocalJSONURL)
+                        fileManager.createFile(atPath: LocalJSONPath!, contents: try? json.rawData())
                     }
-                    
-                    if(tempLanguage.count>self.Language!.count){
-                        for i in 0..<tempLanguage.count{
-                            if !(self.Language!.contains(tempLanguage[i])){
-                                self.Language!.append(tempLanguage[i])
-                                self.movieDownloadLink![tempLanguage[i]] = json.dictionaryValue[tempLanguage[i]]?.stringValue
-                            }
-                        }
-                    }
-                    UserDefaults.standard.set(self.Language, forKey: "Languages")
-                    UserDefaults.standard.set(self.movieDownloadLink,forKey:"movieDownloadLink")//링크는 변하지 않기에, 여기서만 추가함
                 case .failure(let error):
                     print(error)
                 }
@@ -94,7 +75,7 @@ class LanguageData{
     }
     
     func getMovieDownloadLink(_ key:String)->String{
-        return movieDownloadLink![key]!
+        return MovieDownloadLink![key]!
     }
     func reorder(){
         Language!.removeAll{
@@ -103,5 +84,8 @@ class LanguageData{
         Language!.sort()
         Language!.insert("Korean", at: 0)
         UserDefaults.standard.set(Language,forKey:"Languages")
+    }
+    func getDisplayText(_ key:String)->String{
+        return DisplayText![key]!
     }
 }
