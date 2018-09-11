@@ -65,7 +65,7 @@ class SettingTableViewController: UITableViewController{
    // MARK: - Delete file
     func removeAllFiles()
     {
-        let productIdentifiers = SandartEntryTable.productIdentifiers()
+        let productIdentifiers = LanguageData.productIdentifiers()
         
         for identifier in productIdentifiers
         {
