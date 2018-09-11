@@ -84,5 +84,5 @@ fastlane/test_output
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
-
+*.psd
 # End of https://www.gitignore.io/api/xcode,swift,cocoapods
