@@ -35,6 +35,7 @@
 		429980CF2066870E0078CEE9 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429980CE2066870E0078CEE9 /* LanguageTableViewCell.swift */; };
 		42D4005D2077293100EF81D8 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D4005C2077293100EF81D8 /* SettingTableViewController.swift */; };
 		4B379C75214607B40098C35F /* ConnectionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B379C74214607B40098C35F /* ConnectionChecker.swift */; };
+		4B379C7721474C820098C35F /* SandartLanguages.json in Resources */ = {isa = PBXBuildFile; fileRef = 4B379C7621474C820098C35F /* SandartLanguages.json */; };
 		4BC1FBD9213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */; };
 		4BC1FBDB213D4BB500B9E6F6 /* PortraitTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */; };
 		4BC1FBE1213E360E00B9E6F6 /* SandartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227BCB7205A68290064D6EA /* SandartTests.swift */; };
@@ -101,6 +102,7 @@
 		429980CE2066870E0078CEE9 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		42D4005C2077293100EF81D8 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		4B379C74214607B40098C35F /* ConnectionChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionChecker.swift; sourceTree = "<group>"; };
+		4B379C7621474C820098C35F /* SandartLanguages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SandartLanguages.json; sourceTree = "<group>"; };
 		4BC1FBD8213D497700B9E6F6 /* LandscapeAVPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeAVPlayerViewController.swift; sourceTree = "<group>"; };
 		4BC1FBDA213D4BB500B9E6F6 /* PortraitTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortraitTabBarController.swift; sourceTree = "<group>"; };
 		4BC1FBE2213E8B1300B9E6F6 /* LanguageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageData.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		4227BC96205A68280064D6EA = {
 			isa = PBXGroup;
 			children = (
+				4B379C7621474C820098C35F /* SandartLanguages.json */,
 				42D16504208DEC0B00F4D7C1 /* Design */,
 				4227BCA1205A68280064D6EA /* Sandart */,
 				4227BCB6205A68290064D6EA /* SandartTests */,
@@ -392,6 +395,7 @@
 				3A688C95209847AF0075F262 /* AppIcon40.png in Resources */,
 				4283B93220775812009C35B7 /* Localizable.strings in Resources */,
 				3A688C88209847AF0075F262 /* Play.png in Resources */,
+				4B379C7721474C820098C35F /* SandartLanguages.json in Resources */,
 				3A688C90209847AF0075F262 /* Download.png in Resources */,
 				3A688C92209847AF0075F262 /* Stop.png in Resources */,
 				3A688C8A209847AF0075F262 /* SandArtTop.png in Resources */,

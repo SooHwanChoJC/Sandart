@@ -179,7 +179,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let langKey = button.title(for: UIControl.State.application)
         let indexPath = IndexPath.init(row: (table?.indexForLangKey(langKey!))!, section: 1)
         let download = requestDic[langKey!]
-        
+    
         if download != nil{
             download!.cancel()
         }
@@ -378,7 +378,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         for langKey in self.SandArtLanguages.getLanguages(){
             let entry = table!.entryWithLangKey(langKey)
-            entry!.Title = NSLocalizedString(langKey, comment: langKey)
+            entry!.Title = SandArtLanguages.getDisplayText(langKey)
             entry!.persistForKey(langKey)
         }
         self.tableView.reloadData()
