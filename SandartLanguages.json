@@ -4,86 +4,86 @@
         "Korean":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Korean.mp4",
             "Text": "한국어(Korean)"
-            } ,
+        } ,
         "English":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_English.mp4",
             "Text":"영어(English)"
-           },
+        },
         "Chinese":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese.mp4",
             "Text":"중국어(汉语)"
-            },
+        },
         "Chinese Traditional":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4",
-            "Text":"~~~"
-            },
+            "Text":"대만어"
+        },
         "Japanese":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4",
-            "Text":"~~~"
-            },
+            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Japanese.mp4",
+            "Text":"일본어"
+        },
         "Russian":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Russian.mp4",
-            "Text":"~~~"
-            },
+            "Text":"러시아어"
+        },
         "French":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_French.mp4",
-            "Text":"~~~"
-            },
+            "Text":"프랑스어"
+        },
         "Spanish":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Spanish.mp4",
-            "Text":"~~~"
-            },
+            "Text":"스페인어"
+        },
         "Hindi":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Hindi.mp4",
-            "Text":"~~~"
-            },
+            "Text":"힌디어"
+        },
         "Mongolia":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Mongolia.mp4",
-            "Text":"~~~"
-            },
+            "Text":"몽골어"
+        },
         "Polish":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Polish.mp4",
-            "Text":"~~~"
-            },
+            "Text":"폴란드어"
+        },
         "Turkish":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Turkish.mp4",
-            "Text":"~~~"
-            },
+            "Text":"터키어"
+        },
         "Nepali":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Nepali.mp4",
-            "Text":"~~~"
-            },
+            "Text":"네팔어"
+        },
         "Indonesia":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Indonesian.mp4",
-            "Text":"~~~"
-            },
+            "Text":"인도어"
+        },
         "Thai":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Thai.mp4",
-            "Text":"~~~"
-            },
+            "Text":"태국어"
+        },
         "Cambodian":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Cambodian.mp4",
-            "Text":"~~~"
-            },
+            "Text":"캄보디아어"
+        },
         "Filipino":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Filipino.mp4",
-            "Text":"~~~"
-            },
+            "Text":"필리핀어"
+        },
         "Vietnamese":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4",
-            "Text":"~~~"
-            },
+            "Text":"베트남어"
+        },
         "Arabic":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4",
-            "Text":"~~~"
-            },
+            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Arabic.mp4",
+            "Text":"아라비아어"
+        },
         "Lao":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Laos.mp4",
-            "Text":"~~~"
-            },
+            "Text":"라오스어"
+        },
         "Persian":{
             "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Persian.mp4",
-            "Text":"~~~"
-            }
+            "Text":"페르시아어"
+        }
     }
 }

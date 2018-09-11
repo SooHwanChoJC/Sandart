@@ -10,6 +10,7 @@ import Foundation
 
 class SandartEntryTable{
     var Entries = [SandartEntry]()
+     var downloadProgress:Dictionary<String,Float> = Dictionary<String,Float>()
     init(With LangKeys:Array<String?>){
         for key in LangKeys
         {
@@ -19,8 +20,8 @@ class SandartEntryTable{
                 Entry = SandartEntry(WithLangKey: key!)
             }
             Entries.append(Entry!)
+            downloadProgress[key!] = 0.0
         }
-
     }
     func count() -> Int{
         return self.Entries.count
@@ -59,10 +60,6 @@ class SandartEntryTable{
             }
         }
         return -1
-    }
-    static func productIdentifiers()->Array<String>{
-        let paths = Bundle.main.infoDictionary!["Download Paths"] as! Dictionary<String,String>
-        return Array(paths.keys)
     }
     static func storePath() ->URL
     {

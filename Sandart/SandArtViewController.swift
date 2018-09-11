@@ -18,7 +18,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var ReorderButton: UIBarButtonItem!
-    
     override var shouldAutorotate: Bool {
         return true
     }
@@ -28,28 +27,25 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     var table:SandartEntryTable?
     var playerView:LandscapeAVPlayerViewController?
     var requestDic:Dictionary<String,Alamofire.Request> = Dictionary<String,Alamofire.Request>()
-    var downloadProgress:Dictionary<String,Float> = Dictionary<String,Float>()
     var downloadingPath = Array<IndexPath>()
     var timerSet = false
     var isEditMode = false//false : Normal Mode. true : EditMode
-    let SandArtLanguages = LanguageData()
+    var SandArtLanguages:LanguageData?
     let manager = Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: "org.kccc.P4U.background"))
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+        if(SandArtLanguages == nil){
+            SandArtLanguages = LanguageData.init{
+                self.table = SandartEntryTable(With: self.SandArtLanguages!.getLanguages())
+                self.displayUI()
+            }
+        }
         
-        let tabbarHeight = self.tabBarController!.tabBar.frame.size.height
-        self.tableView.contentInset = UIEdgeInsets.init(top: 0,left: 0,bottom: tabbarHeight,right: 0)
-        if(table == nil)
-        {
-            table = SandartEntryTable(With: SandArtLanguages.getLanguages())
-        }
-        for identifier in SandArtLanguages.getLanguages(){
-            downloadProgress[identifier] = 0.0
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,7 +105,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             return
         }
         if entry?.Status == MovieStatus.NotDownloaded{
-            let targetPath = SandArtLanguages.getMovieDownloadLink(langkey)
+            let targetPath = SandArtLanguages!.getMovieDownloadLink(langkey)
             let url = URL.init(string: targetPath)//download url
             //downloading with alamofire
             let destination:DownloadRequest.DownloadFileDestination = { _, _ in
@@ -123,7 +119,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             downloadingPath.append(indexPath)
             let request = manager.download(url!,method: .get, to: destination)
                 .downloadProgress{progress in
-                        self.downloadProgress[langkey] = Float(progress.fractionCompleted)
+                        self.table!.downloadProgress[langkey] = Float(progress.fractionCompleted)
                     
                 }
                 .responseData{
@@ -271,7 +267,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             return 1
         }
         else{
-        return self.SandArtLanguages.count()
+        return self.SandArtLanguages!.count()
         }
     }
     
@@ -279,6 +275,9 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
         let Identifier = (indexPath.section == 0) ? "ImageCell" : "LanguageCell"
         let Rawcell = tableView.dequeueReusableCell(withIdentifier: Identifier)
+        if(table == nil){
+            return Rawcell!
+        }
          if(indexPath.section == 0)
          {
             Rawcell?.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -299,7 +298,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
 
             actionButton.setTitle(entry!.LangKey, for: UIControl.State.application)//set product identifier for purchase
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            cell.Progress.setProgress(downloadProgress[entry!.LangKey]!, animated: false)
+            cell.Progress.setProgress(self.table!.downloadProgress[entry!.LangKey]!, animated: false)
             self.updateButton(cell:cell, withStatus: entry!.Status,indexPath: indexPath)
             return cell
          
@@ -367,18 +366,20 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {//actions when you reordered rows
-                let temp = SandArtLanguages.getLanguage(sourceIndexPath.row)
-                SandArtLanguages.setLanguage(sourceIndexPath.row, data: SandArtLanguages.getLanguage(destinationIndexPath.row))
-                SandArtLanguages.setLanguage(destinationIndexPath.row, data: temp)
+                let temp = SandArtLanguages!.getLanguage(sourceIndexPath.row)
+                SandArtLanguages!.setLanguage(sourceIndexPath.row, data: SandArtLanguages!.getLanguage(destinationIndexPath.row))
+                SandArtLanguages!.setLanguage(destinationIndexPath.row, data: temp)
                 table!.swapEntry(from:sourceIndexPath.row,to:destinationIndexPath.row)
     }
  
     //MARK: - Update UI
     func displayUI(){
-        
-        for langKey in self.SandArtLanguages.getLanguages(){
+        if(table == nil){
+            return
+        }
+        for langKey in self.SandArtLanguages!.getLanguages(){
             let entry = table!.entryWithLangKey(langKey)
-            entry!.Title = SandArtLanguages.getDisplayText(langKey)
+            entry!.Title = SandArtLanguages!.getDisplayText(langKey)
             entry!.persistForKey(langKey)
         }
         self.tableView.reloadData()
@@ -450,7 +451,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
             self.navigationItem.rightBarButtonItem!.title = "Edit"
             self.tableView.setEditing(false, animated: true)
             self.isEditMode = false
-            SandArtLanguages.SaveLanguageData()//only affeted if press Done Button
+            SandArtLanguages!.SaveLanguageData()//only affeted if press Done Button
             self.ReorderButton.isEnabled = true
         }
     }
@@ -460,8 +461,8 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
         let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default){
              (action: UIAlertAction)  in
-                self.SandArtLanguages.reorder()
-                self.table = SandartEntryTable(With: self.SandArtLanguages.getLanguages())
+                self.SandArtLanguages!.reorder()
+                self.table = SandartEntryTable(With: self.SandArtLanguages!.getLanguages())
                 self.tableView.reloadData()
         }
         let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"),style: .cancel)
