@@ -40,9 +40,15 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.delegate = self
         if(SandArtLanguages == nil){
+            if ConnectionChecker.isConnectedInternet(){
             SandArtLanguages = LanguageData.init{
                 self.table = SandartEntryTable(With: self.SandArtLanguages!.getLanguages())
                 self.displayUI()
+                }
+            }
+            else{
+                SandArtLanguages = LanguageData()
+                    self.table = SandartEntryTable(With: self.SandArtLanguages!.getLanguages())
             }
         }
         
@@ -384,49 +390,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }
         self.tableView.reloadData()
     }
-    
-    func initIfAvailable(){
-         var isLaunchedSuccesfullyBefore = UserDefaults.standard.object(forKey: "AlreadyLaunchedSuccessfullyBefore") as? Bool
-        if(isLaunchedSuccesfullyBefore == nil){
-            UserDefaults.standard.set(false, forKey: "AlreadyLaunchedSuccessfullyBefore")
-            isLaunchedSuccesfullyBefore = false
-        }
         
-        if(!(isLaunchedSuccesfullyBefore!)){
-            if !(ConnectionChecker.isConnectedInternet()){
-            let title = "FirstLaunchError"
-            let message = "CheckInternet"
-            let av = UIAlertController.init(title: NSLocalizedString(title, comment: title), message: NSLocalizedString(message, comment: message), preferredStyle:.alert)
-            let retry = UIAlertAction(title: NSLocalizedString("Retry", comment: "Retry"), style: .default){
-                (action: UIAlertAction) in
-                if(ConnectionChecker.isConnectedInternet()){
-                    self.displayUI()
-                    UserDefaults.standard.set(true, forKey: "AlreadyLaunchedSuccessfullyBefore")
-                }
-                else{
-                    self.initIfAvailable()
-                }
-            }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"),style: .cancel){
-                (action: UIAlertAction) in
-                exit(0)
-            }
-            
-            av.addAction(retry)
-            av.addAction(cancel)
-            
-            self.present(av, animated: true, completion: nil)
-            }
-            else{
-                self.displayUI()
-                UserDefaults.standard.set(true, forKey: "AlreadyLaunchedSuccessfullyBefore")
-            }
-        }
-        else{
-           self.displayUI()
-        }
-    }
-
     @objc func updatePeriodically(timer:Timer){
         if self.downloadingPath.count == 0{
             timer.invalidate()

@@ -20,6 +20,9 @@ class LanguageData{
         self.loadData()//JSON으로 부터 데이터를 가져옴
         self.CheckUpdate(onComplete: c)//온라인에서 JSON을 가져옴
     }
+    init(){
+        self.loadData()//JSON으로 부터 데이터를 가져옴
+    }
     //MARK: - Member Method
     func SaveLanguageData(){
         UserDefaults.standard.set(Language,forKey:"Languages")
@@ -54,9 +57,8 @@ class LanguageData{
     func getDisplayText(_ key:String)->String{
         return DisplayText![key]!
     }
-    func CheckUpdate(onComplete c: @escaping ()->()){
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent("SandartLanguages.json")
+    //MARK: - Private Method
+    private func CheckUpdate(onComplete c: @escaping ()->()){
         if(ConnectionChecker.isConnectedInternet()){
             let URL = "http://cccvlm6.myqnapcloud.com/SandartLanguages.json"//JSON LINK
             
@@ -68,6 +70,8 @@ class LanguageData{
                     if(self.Version!<tempVersion)
                     {
                         let fileManager = FileManager.default
+                        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        let fileURL = documentsURL.appendingPathComponent("SandartLanguages.json")
                         try? fileManager.removeItem(at: fileURL)
                         fileManager.createFile(atPath: fileURL.relativePath, contents: try? json.rawData())
                         self.reloadData()
@@ -80,7 +84,7 @@ class LanguageData{
         }
     }
     
-    //MARK: - Private Method
+
     private func loadData(){
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent("SandartLanguages.json")
@@ -123,7 +127,6 @@ class LanguageData{
                     $0["Text"].stringValue
                 }
             }
-            
         }
     }
     private func reloadData(){//데이터를 다시 로드한다. 파일의 존재 여부를 검사하지 않고, 새로운 언어가 추가되었는지 여부를 체크하고 있으면 추가한다.
