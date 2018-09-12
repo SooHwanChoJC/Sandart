@@ -47,9 +47,7 @@ class LanguageData{
         return MovieDownloadLink![key]!
     }
     func reorder(){
-        Language!.removeAll{
-            $0 == "Korean"
-        }//Korean 삭제
+        Language!.remove(at: Language!.index(of: "Korean")!)
         Language!.sort()
         Language!.insert("Korean", at: 0)
         UserDefaults.standard.set(Language,forKey:"Languages")
@@ -99,9 +97,7 @@ class LanguageData{
                     $0.key
                 }
                 //키가 원하는 순서대로 나오지 않기 때문에, 재정렬을 수행
-                Language!.removeAll{
-                    $0 == "Korean"
-                }//Korean 삭제
+                Language!.remove(at: Language!.index(of: "Korean")!)
                 Language!.sort()
                 Language!.insert("Korean", at: 0)
                 UserDefaults.standard.set(Language,forKey:"Languages")//순서는 Userdefaults로 따로 관리
