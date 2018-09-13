@@ -13,7 +13,8 @@ import SwiftyJSON
 class LanguageData{
     private var Language:[String]? = []
     private var MovieDownloadLink:[String:String]? = [:]
-    private var DisplayText:[String:String]? = [:]
+    private var KText:[String:String]? = [:]
+    private var OriginText:[String:String]? = [:]
     private var Version:Int?
     
     init(onComplete c:@escaping ()->()){
@@ -53,7 +54,20 @@ class LanguageData{
         UserDefaults.standard.set(Language,forKey:"Languages")
     }
     func getDisplayText(_ key:String)->String{
-        return DisplayText![key]!
+        if Locale.autoupdatingCurrent.identifier == "ko_KR"
+        {
+            if(key == "Korean"){
+                return key
+            }else{
+                return KText![key]!
+            }
+        }
+        else{
+            return key
+        }
+    }
+    func getOriginText(_ key:String)->String{
+        return OriginText![key]!
     }
     //MARK: - Private Method
     private func CheckUpdate(onComplete c: @escaping ()->()){
@@ -64,7 +78,6 @@ class LanguageData{
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    print(json)
                     let tempVersion = json["Version"].intValue
                     if(self.Version!<tempVersion)
                     {
@@ -106,10 +119,12 @@ class LanguageData{
                 MovieDownloadLink = json["Data"].dictionaryValue.mapValues{
                     $0["Link"].stringValue
                 }
-                DisplayText = json["Data"].dictionaryValue.mapValues{
+                KText = json["Data"].dictionaryValue.mapValues{
                     $0["Text"].stringValue
                 }
-                
+                OriginText = json["Data"].dictionary?.mapValues{
+                    $0["Origin"].stringValue
+                }
                 FileManager.default.createFile(atPath: fileURL.relativePath, contents:try? json.rawData())
             }
         } else{
@@ -120,8 +135,11 @@ class LanguageData{
                 MovieDownloadLink = json["Data"].dictionaryValue.mapValues{
                     $0["Link"].stringValue
                 }
-                DisplayText = json["Data"].dictionaryValue.mapValues{
+                KText = json["Data"].dictionaryValue.mapValues{
                     $0["Text"].stringValue
+                }
+                OriginText = json["Data"].dictionary?.mapValues{
+                    $0["Origin"].stringValue
                 }
             }
         }
@@ -137,8 +155,11 @@ class LanguageData{
             MovieDownloadLink = json["Data"].dictionaryValue.mapValues{
                 $0["Link"].stringValue
             }
-            DisplayText = json["Data"].dictionaryValue.mapValues{
+            KText = json["Data"].dictionaryValue.mapValues{
                 $0["Text"].stringValue
+            }
+            OriginText = json["Data"].dictionary?.mapValues{
+                $0["Origin"].stringValue
             }
             let tempLanguage = json["Data"].dictionaryValue.map{
                     $0.key

@@ -385,7 +385,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }
         for langKey in self.SandArtLanguages!.getLanguages(){
             let entry = table!.entryWithLangKey(langKey)
-            entry!.Title = SandArtLanguages!.getDisplayText(langKey)
+            entry!.Title = SandArtLanguages!.getDisplayText(langKey) + "(" + SandArtLanguages!.getOriginText(langKey) + ")"
             entry!.persistForKey(langKey)
         }
         self.tableView.reloadData()
