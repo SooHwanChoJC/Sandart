@@ -54,20 +54,28 @@ class LanguageData{
         UserDefaults.standard.set(Language,forKey:"Languages")
     }
     func getDisplayText(_ key:String)->String{
-        if Locale.autoupdatingCurrent.identifier == "ko_KR"
+        if (Locale.autoupdatingCurrent.languageCode)! == "ko"
         {
-            if(key == "Korean"){
-                return key
-            }else{
                 return KText![key]!
-            }
         }
         else{
             return key
         }
     }
     func getOriginText(_ key:String)->String{
-        return OriginText![key]!
+        if (Locale.autoupdatingCurrent.languageCode)! == "ko"
+        {
+            if key == "Korean"{
+                return key
+            }
+            else{
+            return OriginText![key]!
+            }
+        }
+        else{
+            return OriginText![key]!
+        }
+
     }
     //MARK: - Private Method
     private func CheckUpdate(onComplete c: @escaping ()->()){
