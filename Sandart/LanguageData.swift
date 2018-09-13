@@ -59,11 +59,12 @@ class LanguageData{
     private func CheckUpdate(onComplete c: @escaping ()->()){
         if(ConnectionChecker.isConnectedInternet()){
             let URL = "http://cccvlm6.myqnapcloud.com/SandartLanguages.json"//JSON LINK
-            
+            Alamofire.SessionManager.default.session.configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
             Alamofire.request(URL, method: .get).validate().responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
+                    print(json)
                     let tempVersion = json["Version"].intValue
                     if(self.Version!<tempVersion)
                     {
