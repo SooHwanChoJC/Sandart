@@ -179,6 +179,7 @@ class LanguageData{
             let deletedLanguage = Language!.filter{
                 !(tempLanguage.contains($0))
             }//삭제된 언어를 체크
+            
             Language! += addedLanguage//추가된 언어를 뒤에 붙임
             Language = Language!.filter{
                 !(deletedLanguage.contains($0))

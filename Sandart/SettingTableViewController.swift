@@ -118,5 +118,3 @@ class SettingTableViewController: UITableViewController{
     }
 
 }
-
-// Helper function inserted by Swift 4.2 migrator.
