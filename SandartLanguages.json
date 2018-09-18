@@ -1,110 +1,152 @@
 {
-    "Version":1,
-    "Data":{
-        "Korean":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Korean.mp4",
+    "Version": 1,
+    "Data": {
+        "Korean": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Korean.mp4",
             "Text": "한국어",
-            "Origin":"한국어"
-        } ,
-        "English":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_English.mp4",
-            "Text":"영어",
-            "Origin":"English"
+            "Origin": "한국어",
+            "Img": "http://sandartp4u.com/img/south_korea.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_ko.zip"
         },
-        "Chinese":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese.mp4",
-            "Text":"중국어 간체",
-            "Origin":"简体中文"
+        "English": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_English.mp4",
+            "Text": "영어",
+            "Origin": "English",
+            "Img": "http://sandartp4u.com/img/usa.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_eng.zip"
         },
-        "Chinese Traditional":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4",
-            "Text":"중국어 번체",
-            "Origin":"繁體中文"
+        "Chinese": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese.mp4",
+            "Text": "중국어 간체",
+            "Origin": "简体中文",
+            "Img": "http://sandartp4u.com/img/china.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_chinese.zip"
         },
-        "Japanese":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Japanese.mp4",
-            "Text":"일본어",
-            "Origin":"日本語"
+        "Chinese Traditional": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Chinese(Traditional).mp4",
+            "Text": "중국어 번체",
+            "Origin": "繁體中文",
+            "Img": "http://sandartp4u.com/img/taiwan.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Chinese(Traditional).zip"
         },
-        "Russian":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Russian.mp4",
-            "Text":"러시아어",
-            "Origin":"русский"
+        "Japanese": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Japanese.mp4",
+            "Text": "일본어",
+            "Origin": "日本語",
+            "Img": "http://sandartp4u.com/img/japan.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_japan.zip"
         },
-        "French":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_French.mp4",
-            "Text":"프랑스어",
-            "Origin":"français"
+        "Russian": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Russian.mp4",
+            "Text": "러시아어",
+            "Origin": "русский",
+            "Img": "http://sandartp4u.com/img/russia.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_russia.zip"
         },
-        "Spanish":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Spanish.mp4",
-            "Text":"스페인어",
-            "Origin":"Español"
+        "French": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_French.mp4",
+            "Text": "프랑스어",
+            "Origin": "français",
+            "Img": "http://sandartp4u.com/img/france.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_france.zip"
         },
-        "Hindi":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Hindi.mp4",
-            "Text":"힌디어",
-            "Origin":"हिंदी"
+        "Spanish": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Spanish.mp4",
+            "Text": "스페인어",
+            "Origin": "Español",
+            "Img": "http://sandartp4u.com/img/spain.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_spain.zip"
         },
-        "Mongolia":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Mongolia.mp4",
-            "Text":"몽골어",
-            "Origin":"मंगोलियन"
+        "Hindi": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Hindi.mp4",
+            "Text": "힌디어",
+            "Origin": "हिंदी",
+            "Img": "http://sandartp4u.com/img/india.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Hindi.zip"
         },
-        "Polish":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Polish.mp4",
-            "Text":"폴란드어",
-            "Origin":"Polskie"
+        "Mongolia": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Mongolia.mp4",
+            "Text": "몽골어",
+            "Origin": "मंगोलियन",
+            "Img": "http://sandartp4u.com/img/Mongolia.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Mongolia.zip"
         },
-        "Turkish":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Turkish.mp4",
-            "Text":"터키어",
-            "Origin":"Türk"
+        "Polish": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Polish.mp4",
+            "Text": "폴란드어",
+            "Origin": "Polskie",
+            "Img": "http://sandartp4u.com/img/poland.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Poland.zip"
         },
-        "Nepali":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Nepali.mp4",
-            "Text":"네팔어",
-            "Origin":"नेपाली"
+        "Turkish": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Turkish.mp4",
+            "Text": "터키어",
+            "Origin": "Türk",
+            "Img": "http://sandartp4u.com/img/turkey.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Turkey.zip"
         },
-        "Indonesia":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Indonesian.mp4",
-            "Text":"인도네시아어",
-            "Origin":"bahasa Indonesia"
+        "Nepali": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Nepali.mp4",
+            "Text": "네팔어",
+            "Origin": "नेपाली",
+            "Img": "http://sandartp4u.com/img/nepal.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Nepali.zip"
         },
-        "Thai":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Thai.mp4",
-            "Text":"태국어",
-            "Origin":"ไทย"
+        "Indonesia": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Indonesian.mp4",
+            "Text": "인도네시아어",
+            "Origin": "bahasa Indonesia",
+            "Img": "http://sandartp4u.com/img/Indonesian.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Indonesian.zip"
         },
-        "Cambodian":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Cambodian.mp4",
-            "Text":"캄보디아어",
-            "Origin":"កម្ពុជា"
+        "Thai": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Thai.mp4",
+            "Text": "태국어",
+            "Origin": "ไทย",
+            "Img": "http://sandartp4u.com/img/thai.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Thai.zip"
         },
-        "Filipino":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Filipino.mp4",
-            "Text":"필리핀어",
-            "Origin":"Filipino"
+        "Cambodian": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Cambodian.mp4",
+            "Text": "캄보디아어",
+            "Origin": "កម្ពុជា",
+            "Img": "http://sandartp4u.com/img/khmer.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Cambodian.zip"
         },
-        "Vietnamese":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4",
-            "Text":"베트남어",
-            "Origin":"Tiếng Việt"
+        "Filipino": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Filipino.mp4",
+            "Text": "필리핀어",
+            "Origin": "Filipino",
+            "Img": "http://sandartp4u.com/img/filipino.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Filipino.zip"
         },
-        "Arabic":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Arabic.mp4",
-            "Text":"아라비아어",
-            "Origin":"عربى"
+        "Vietnamese": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Vietnamese.mp4",
+            "Text": "베트남어",
+            "Origin": "Tiếng Việt",
+            "Img": "http://sandartp4u.com/img/vietnamese.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Vietnamese.zip"
         },
-        "Lao":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Laos.mp4",
-            "Text":"라오스어",
-            "Origin":"ລາວ"
+        "Arabic": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Arabic.mp4",
+            "Text": "아라비아어",
+            "Origin": "عربى",
+            "Img": "http://sandartp4u.com/img/Arabic.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Arabic.zip"
         },
-        "Persian":{
-            "Link":"http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Persian.mp4",
-            "Text":"페르시아어",
-            "Origin":"ایران"
+        "Lao": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Laos.mp4",
+            "Text": "라오스어",
+            "Origin": "ລາວ",
+            "Img": "http://sandartp4u.com/img/Lao.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Laos.zip"
+        },
+        "Persian": {
+            "Link": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_mobile_Persian.mp4",
+            "Text": "페르시아어",
+            "Origin": "ایران",
+            "Img": "http://sandartp4u.com/img/Persian.png",
+            "High": "http://cccvlm6.myqnapcloud.com/sandartp4u/SandArtP4U_Web_Persian.zip"
         }
     }
 }

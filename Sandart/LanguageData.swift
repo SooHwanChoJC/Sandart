@@ -80,7 +80,7 @@ class LanguageData{
     //MARK: - Private Method
     private func CheckUpdate(onComplete c: @escaping ()->()){
         if(ConnectionChecker.isConnectedInternet()){
-            let URL = "http://cccvlm6.myqnapcloud.com/SandartLanguages.json"//JSON LINK
+            let URL = "http://sandartp4u.com/_include/data/SandartLanguages.json"//JSON LINK
             Alamofire.SessionManager.default.session.configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
             Alamofire.request(URL, method: .get).validate().responseJSON { response in
                 switch response.result {
