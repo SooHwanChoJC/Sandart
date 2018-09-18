@@ -45,11 +45,11 @@ class SettingTableViewController: UITableViewController{
         case 1:
             switch(indexPath.row){
             case 0:
-                UIApplication.shared.open(URL(string: "http://everykoreanstudent.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://everykoreanstudent.com")!, options: [:] , completionHandler: nil)
                 self.tableView.deselectRow(at: indexPath, animated: true)
                 break;
             case 1:
-                UIApplication.shared.open(URL(string: "http://sandartp4u.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://sandartp4u.com")!, options: [:] , completionHandler: nil)
                 self.tableView.deselectRow(at: indexPath, animated: true)
                 break;
             default:
@@ -120,6 +120,3 @@ class SettingTableViewController: UITableViewController{
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
-}

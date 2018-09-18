@@ -13,7 +13,8 @@ import SwiftyJSON
 class LanguageData{
     private var Language:[String]? = []
     private var MovieDownloadLink:[String:String]? = [:]
-    private var DisplayText:[String:String]? = [:]
+    private var KText:[String:String]? = [:]
+    private var OriginText:[String:String]? = [:]
     private var Version:Int?
     
     init(onComplete c:@escaping ()->()){
@@ -47,21 +48,40 @@ class LanguageData{
         return MovieDownloadLink![key]!
     }
     func reorder(){
-        Language!.removeAll{
-            $0 == "Korean"
-        }//Korean 삭제
+        Language!.remove(at: Language!.index(of: "Korean")!)
         Language!.sort()
         Language!.insert("Korean", at: 0)
         UserDefaults.standard.set(Language,forKey:"Languages")
     }
     func getDisplayText(_ key:String)->String{
-        return DisplayText![key]!
+        if (Locale.autoupdatingCurrent.languageCode)! == "ko"
+        {
+                return KText![key]!
+        }
+        else{
+            return key
+        }
+    }
+    func getOriginText(_ key:String)->String{
+        if (Locale.autoupdatingCurrent.languageCode)! == "ko"
+        {
+            if key == "Korean"{
+                return key
+            }
+            else{
+            return OriginText![key]!
+            }
+        }
+        else{
+            return OriginText![key]!
+        }
+
     }
     //MARK: - Private Method
     private func CheckUpdate(onComplete c: @escaping ()->()){
         if(ConnectionChecker.isConnectedInternet()){
-            let URL = "http://cccvlm6.myqnapcloud.com/SandartLanguages.json"//JSON LINK
-            
+            let URL = "http://sandartp4u.com/_include/data/SandartLanguages.json"//JSON LINK
+            Alamofire.SessionManager.default.session.configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
             Alamofire.request(URL, method: .get).validate().responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -99,9 +119,7 @@ class LanguageData{
                     $0.key
                 }
                 //키가 원하는 순서대로 나오지 않기 때문에, 재정렬을 수행
-                Language!.removeAll{
-                    $0 == "Korean"
-                }//Korean 삭제
+                Language!.remove(at: Language!.index(of: "Korean")!)
                 Language!.sort()
                 Language!.insert("Korean", at: 0)
                 UserDefaults.standard.set(Language,forKey:"Languages")//순서는 Userdefaults로 따로 관리
@@ -109,10 +127,12 @@ class LanguageData{
                 MovieDownloadLink = json["Data"].dictionaryValue.mapValues{
                     $0["Link"].stringValue
                 }
-                DisplayText = json["Data"].dictionaryValue.mapValues{
+                KText = json["Data"].dictionaryValue.mapValues{
                     $0["Text"].stringValue
                 }
-                
+                OriginText = json["Data"].dictionary?.mapValues{
+                    $0["Origin"].stringValue
+                }
                 FileManager.default.createFile(atPath: fileURL.relativePath, contents:try? json.rawData())
             }
         } else{
@@ -123,8 +143,11 @@ class LanguageData{
                 MovieDownloadLink = json["Data"].dictionaryValue.mapValues{
                     $0["Link"].stringValue
                 }
-                DisplayText = json["Data"].dictionaryValue.mapValues{
+                KText = json["Data"].dictionaryValue.mapValues{
                     $0["Text"].stringValue
+                }
+                OriginText = json["Data"].dictionary?.mapValues{
+                    $0["Origin"].stringValue
                 }
             }
         }
@@ -140,8 +163,11 @@ class LanguageData{
             MovieDownloadLink = json["Data"].dictionaryValue.mapValues{
                 $0["Link"].stringValue
             }
-            DisplayText = json["Data"].dictionaryValue.mapValues{
+            KText = json["Data"].dictionaryValue.mapValues{
                 $0["Text"].stringValue
+            }
+            OriginText = json["Data"].dictionary?.mapValues{
+                $0["Origin"].stringValue
             }
             let tempLanguage = json["Data"].dictionaryValue.map{
                     $0.key

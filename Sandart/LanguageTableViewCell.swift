@@ -13,7 +13,7 @@ class LanguageTableViewCell: UITableViewCell {
     @IBOutlet var LanguageLabel: UILabel!
     @IBOutlet var DownloadButton: UIButton!
     @IBOutlet var Progress: UIProgressView!
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setEditing(true, animated: true)
         self.showsReorderControl = true
