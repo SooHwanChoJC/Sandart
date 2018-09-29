@@ -57,29 +57,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         self.displayUI()
     }
-    func getScreenFrameForCurrentOrientation() -> CGRect{
-        return self.getScreenFrameForOrientation(orientation: UIApplication.shared.statusBarOrientation)
-    }
     
-    func getScreenFrameForOrientation(orientation:UIInterfaceOrientation)->CGRect{
-        let screen = UIScreen.main
-        var fullScreenRect = screen.bounds
-        let statusBarHidden = UIApplication.shared.isStatusBarHidden
-        
-        if orientation == UIInterfaceOrientation.landscapeRight || orientation == UIInterfaceOrientation.landscapeLeft{
-            var temp = CGRect.zero
-            temp.size.width = fullScreenRect.size.height
-            temp.size.height = fullScreenRect.size.width
-            fullScreenRect = temp
-        }
-        if !statusBarHidden{
-            let statusBarSize = UIApplication.shared.statusBarFrame.size
-            let statusBarHeight = Swift.min(statusBarSize.width, statusBarSize.height)
-            fullScreenRect.size.height -= CGFloat(statusBarHeight)
-        }
-        
-        return fullScreenRect
-    }
     //MARK: - event handlers
     
     @objc @IBAction func download(_ sender: Any) {
@@ -161,7 +139,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         }
 }
     
-    func addSkipBackupAttributeToItemAtURL(URL:URL){
+    func addSkipBackupAttributeToItemAtURL(URL:URL){//특정 파일의 URL을 인자로 받아 해당 파일을 백업 대상에서 제외함.
         
         assert(FileManager.default.fileExists(atPath: URL.path))
         

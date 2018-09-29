@@ -20,15 +20,7 @@ class SandartEntry:NSObject,NSCoding{
     var Title:String = ""
     var Status:MovieStatus = MovieStatus.NotDownloaded
 
-    var _progress:Float = 0.0
-    var progress:Float{
-        get{
-            return _progress
-        }
-        set{
-            _progress = newValue
-        }
-    }
+
     override init(){
         LangKey = "Not Found"
         Status = MovieStatus.NotDownloaded
