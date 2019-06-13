@@ -22,9 +22,5 @@ use_frameworks!
 
 pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON','~> 4.1'
-pod 'RxSwift','~> 4.0'
-pod 'RxCocoa','~> 4.0'
-pod 'RxDataSources', '~> 3.0'
-pod 'RxAlamofire'
 
 end

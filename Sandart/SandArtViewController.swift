@@ -51,7 +51,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
                     self.table = SandartEntryTable(With: self.SandArtLanguages!.getLanguages())
             }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -127,7 +126,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
                         self.update(indexPath: indexPath, withStatus: MovieStatus.Downloaded)
                     }
                     self.requestDic.removeValue(forKey: langkey)
-                    self.downloadingPath.remove(at: self.downloadingPath.index(of: indexPath)!)
+                    self.downloadingPath.remove(at: self.downloadingPath.firstIndex(of: indexPath)!)
               
             }
             requestDic[langkey] = request
@@ -187,7 +186,6 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     //MARK: - event helpers
     @objc func moviePlayerPlaybackDidFinish(notification:Notification){
-        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue,forKey:"orientation")
         playerView?.dismiss(animated: true, completion: nil)
         
     }
@@ -369,7 +367,7 @@ class SandArtViewController: UIViewController,UITableViewDelegate, UITableViewDa
         self.tableView.reloadData()
     }
         
-    @objc func updatePeriodically(timer:Timer){
+    @objc func updatePeriodically(timer:Timer){//다운로드 진행중일 때 진행바를 갱신하기 위해 주기적으로 호출하는 함수
         if self.downloadingPath.count == 0{
             timer.invalidate()
             self.timerSet = false

@@ -1,5 +1,5 @@
 //
-//  SandartEntry.swift
+//  SandartEntry.swift - 샌드아트 각 항목 하나를 나타내는 Model
 //  Sandart
 //
 //  Created by Soohwan.Cho on 2018. 3. 29..
@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
+
 enum MovieStatus:Int{
     case NotDownloaded = 0
     case Downloading = 1
@@ -16,9 +16,9 @@ enum MovieStatus:Int{
 
 class SandartEntry:NSObject,NSCoding{
    
-    var LangKey:String = ""
-    var Title:String = ""
-    var Status:MovieStatus = MovieStatus.NotDownloaded
+    var LangKey:String = ""//각 언어별 Ideltifier
+    var Title:String = ""//실제로 보여지는 이름
+    var Status:MovieStatus = MovieStatus.NotDownloaded//다운로드 여부를 나타내는 enum
 
 
     override init(){

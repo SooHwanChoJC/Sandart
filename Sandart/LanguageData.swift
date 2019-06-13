@@ -1,5 +1,5 @@
 //
-//  LanguageData.swift
+//  LanguageData.swift - sandart 각 언어별 데이터를 관리하기 위한 클래스
 //  Sandart
 //
 //  Created by 조수환 on 2018. 9. 4..
@@ -48,7 +48,7 @@ class LanguageData{
         return MovieDownloadLink![key]!
     }
     func reorder(){
-        Language!.remove(at: Language!.index(of: "Korean")!)
+        Language!.remove(at: Language!.firstIndex(of: "Korean")!)
         Language!.sort()
         Language!.insert("Korean", at: 0)
         UserDefaults.standard.set(Language,forKey:"Languages")
@@ -78,7 +78,7 @@ class LanguageData{
 
     }
     //MARK: - Private Method
-    private func CheckUpdate(onComplete c: @escaping ()->()){
+    private func CheckUpdate(onComplete c: @escaping ()->()){//서버에서 json파일을 읽고 업데이트 여부를 체크하고 필요시 갱신한다.
         if(ConnectionChecker.isConnectedInternet()){
             let URL = "http://sandartp4u.com/_include/data/SandartLanguages.json"//JSON LINK
             Alamofire.SessionManager.default.session.configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
@@ -105,7 +105,7 @@ class LanguageData{
     }
     
 
-    private func loadData(){
+    private func loadData(){//json 파일을 기반으로 언어 데이터를 가져온다.
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent("SandartLanguages.json")
         
@@ -119,7 +119,7 @@ class LanguageData{
                     $0.key
                 }
                 //키가 원하는 순서대로 나오지 않기 때문에, 재정렬을 수행
-                Language!.remove(at: Language!.index(of: "Korean")!)
+                Language!.remove(at: Language!.firstIndex(of: "Korean")!)
                 Language!.sort()
                 Language!.insert("Korean", at: 0)
                 UserDefaults.standard.set(Language,forKey:"Languages")//순서는 Userdefaults로 따로 관리

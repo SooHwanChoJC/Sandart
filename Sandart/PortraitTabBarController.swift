@@ -1,5 +1,5 @@
 //
-//  PortraitTabViewController.swift
+//  PortraitTabViewController.swift - 세로 고정 된 탭바
 //  Sandart
 //
 //  Created by 조수환 on 2018. 9. 3..

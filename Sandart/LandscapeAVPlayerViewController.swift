@@ -1,5 +1,5 @@
 //
-//  LandScapeAVPlayerViewController.swift
+//  LandScapeAVPlayerViewController.swift - 가로 고정된 AVPlayerViewController
 //  Sandart
 //
 //  Created by 조수환 on 2018. 9. 3..

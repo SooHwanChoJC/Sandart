@@ -1,5 +1,5 @@
 //
-//  SettingTableViewController.swift
+//  SettingTableViewController.swift - 설정 탭
 //  Sandart
 //
 //  Created by Soohwan.Cho on 2018. 4. 6..

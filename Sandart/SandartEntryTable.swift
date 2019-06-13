@@ -1,5 +1,5 @@
 //
-//  SandartEntryTable.swift
+//  SandartEntryTable.swift - 샌드아트 영상 테이블 전체를 나타내는 Model
 //  Sandart
 //
 //  Created by Soohwan.Cho on 2018. 3. 29..
